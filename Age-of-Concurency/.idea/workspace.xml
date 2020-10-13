@@ -28,6 +28,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -91,21 +99,37 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1602578622771">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="722" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1602596928298">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="722" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596928298" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602596450061">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596450061" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1602610746086">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.bottom/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1602578622771">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602610746086" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1602610746086">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.center/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1602578622771">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602610746086" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1602610746086">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.left/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1602578622771">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602610746086" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1602610746086">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.right/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602610746086" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602596414945">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596414945" />
   </component>
 </project>

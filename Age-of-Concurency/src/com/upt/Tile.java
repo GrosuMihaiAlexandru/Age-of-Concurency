@@ -2,24 +2,27 @@ package com.upt;
 
 public class Tile {
 
-    public enum TileType { Empty, Resource, Character, City,   }
+    private int posX, posY;
 
-    private TileType tileType;
-    private Coord coord;
+    public ITileContent tileContent;
 
-    public Tile(Coord coord, TileType tileType)
+    public Tile (int x, int y)
     {
-        this.coord = coord;
-        this.tileType = tileType;
+        this.posX = x;
+        this.posY = y;
     }
 
-    public Resource getResource()
+    public Tile (int x, int y, ITileContent tileContent)
     {
-
+        this(x,y);
+        this.tileContent = tileContent;
     }
 
-    public Coord getCoord()
-    {
-        return coord;
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
     }
 }

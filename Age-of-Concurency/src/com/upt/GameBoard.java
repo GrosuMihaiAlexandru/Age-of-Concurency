@@ -9,12 +9,10 @@ public class GameBoard {
         // TODO: generate tiles
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
-                tiles[i][j] = new Walkable(i, j);
+                tiles[i][j] = new Tile(i, j);
             }
         }
     }
-
-    public Tile[] GetNeighbours()
 
     public void displayGameBoard() {
         for (int i = 0; i < HEIGHT; i++) {
