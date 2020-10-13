@@ -15,4 +15,9 @@ public class Walkable extends Tile {
     public int getY() {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "#";
+    }
 }

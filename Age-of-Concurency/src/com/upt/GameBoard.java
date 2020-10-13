@@ -2,13 +2,17 @@ package com.upt;
 
 public class GameBoard {
 
-    private static final int WIDTH = 8;
+    private static final int WIDTH = 32;
     private static final int HEIGHT = 8;
-    private Tile[][] tiles;
+    private Tile[][] tiles = new Tile[HEIGHT][WIDTH];
 
     public GameBoard() {
         // TODO: generate tiles
-
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                tiles[i][j] = new Walkable(i, j);
+            }
+        }
     }
 
     public void displayGameBoard() {
