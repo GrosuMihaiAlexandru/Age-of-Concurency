@@ -1,20 +1,25 @@
 package com.upt;
 
-public abstract class Tile {
+public class Tile {
 
-    private int x;
-    private int y;
+    public enum TileType { Empty, Resource, Character, City,   }
 
-    public Tile(int x, int y) {
-        this.x = x;
-        this.y = y;
+    private TileType tileType;
+    private Coord coord;
+
+    public Tile(Coord coord, TileType tileType)
+    {
+        this.coord = coord;
+        this.tileType = tileType;
     }
 
-    int getX() {
-        return x;
-    }
-    int getY() {
-        return y;
+    public Resource getResource()
+    {
+
     }
 
+    public Coord getCoord()
+    {
+        return coord;
+    }
 }
