@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e195a0fb-08d4-49e0-90c6-adcc14569aaa" name="Default Changelist" comment="" />
+    <list default="true" id="99d12914-185e-454a-9ef1-2db3b967bac7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="1iY9eM8GHuBZbcNXukS2QU64ZRm" />
+  <component name="ProjectId" id="1ioVeENiOSmW5KYm1oGOEZqLane" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,7 +15,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
-      <module name="Joc-de-strategie" />
+      <module name="Age-of-Concurency" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -27,11 +27,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e195a0fb-08d4-49e0-90c6-adcc14569aaa" name="Default Changelist" comment="" />
-      <created>1602073982059</created>
+      <changelist id="99d12914-185e-454a-9ef1-2db3b967bac7" name="Default Changelist" comment="" />
+      <created>1602574026112</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1602073982059</updated>
+      <updated>1602574026112</updated>
     </task>
     <servers />
   </component>
