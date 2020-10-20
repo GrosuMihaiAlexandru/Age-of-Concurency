@@ -41,7 +41,7 @@ public abstract class Unit
 
     public void createLeeMatrix() {
         map = new PathfindingTile[grid.getWidth()][grid.getHeight()];
-        map[posX][posY] = new PathfindingTile(posX, posY, 0);
+        map[posX][posY] = new PathfindingTile(posX, posY, -1, -1, 0);
         queue.clear(); // clear old stuff
         queue.add(grid.tileFromPosition(posX, posY)); // add current position of the unit
 
@@ -54,14 +54,14 @@ public abstract class Unit
             neighborPositions = grid.getNeighbours(currentPos);
 
             for (Tile neighborPos : neighborPositions) {
+                // System.out.println(neighborPos.getPosX() + ":" + neighborPos.getPosY() + " -> " + (map[neighborPos.getPosX()][neighborPos.getPosY()] == null ? "null" : "non null") + " -> " + (grid.tileFromPosition(neighborPos.getPosX(), neighborPos.getPosY()).tileContent == null ? "null" : "non null"));
+
                 if (map[neighborPos.getPosX()][neighborPos.getPosY()] == null && grid.tileFromPosition(neighborPos.getPosX(), neighborPos.getPosY()).tileContent == null) // node hasn't been visited before and is walkable (has no tileContent)
                 {
                     queue.add(neighborPos);
-                    map[neighborPos.getPosX()][neighborPos.getPosY()] = new PathfindingTile(neighborPos.getPosX(), neighborPos.getPosY(), map[currentPos.getPosX()][currentPos.getPosY()].distance + 1);
+                    map[neighborPos.getPosX()][neighborPos.getPosY()] = new PathfindingTile(neighborPos.getPosX(), neighborPos.getPosY(), currentPos.getPosX(), currentPos.getPosY(), map[currentPos.getPosX()][currentPos.getPosY()].distance + 1);
                 }
             }
-
-            queue.remove();
         }
     }
 
@@ -74,8 +74,11 @@ public abstract class Unit
         while(currentX != posX || currentY != posY)
         {
             path.add(map[currentX][currentY]);
-            currentX = map[currentX][currentY].parentX;
-            currentY = map[currentX][currentY].parentY;
+
+            int x = map[currentX][currentY].parentX;
+            int y = map[currentX][currentY].parentY;
+            currentX = x;
+            currentY = y;
         }
 
         return path;
@@ -85,7 +88,12 @@ public abstract class Unit
         for (int i = 0; i < grid.getWidth(); i++) {
             for (int j = 0; j < grid.getHeight(); j++) {
                 if (map[i][j] != null)
-                    System.out.print(map[i][j].distance);
+                {
+                    if (map[i][j].distance < 10)
+                        System.out.print(map[i][j].distance);
+                    else
+                        System.out.print("x");
+                }
                 else
                     System.out.print(" ");
             }
@@ -95,12 +103,18 @@ public abstract class Unit
 
     public class PathfindingTile
     {
+        public int selfX;
+        public int selfY;
+
         public int parentX;
         public int parentY;
         public int distance;
 
-        public PathfindingTile(int parentX, int parentY, int distance)
+        public PathfindingTile(int selfX, int selfY, int parentX, int parentY, int distance)
         {
+            this.selfX = selfX;
+            this.selfY = selfY;
+
             this.parentX = parentX;
             this.parentY = parentY;
             this.distance = distance;

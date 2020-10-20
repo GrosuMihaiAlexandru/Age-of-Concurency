@@ -22,6 +22,7 @@
     <list default="true" id="99d12914-185e-454a-9ef1-2db3b967bac7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/upt/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/upt/Unit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/upt/debugging/PathfindingDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/upt/debugging/PathfindingDebug.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +53,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.ResourceDebug">
+  <component name="RunManager" selected="Application.PathfindingDebug">
     <configuration name="LoadGridDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.upt.debugging.LoadGridDebug" />
       <module name="Age-of-Concurency" />
@@ -102,11 +103,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PathfindingDebug" />
         <item itemvalue="Application.ResourceDebug" />
         <item itemvalue="Application.LoadGridDebug" />
-        <item itemvalue="Application.PathfindingDebug" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -152,57 +166,54 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596450061" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1603208609841">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="413" key="GridCell.Tab.0.bottom" timestamp="1603219693044">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.bottom/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
+    <state width="2517" height="413" key="GridCell.Tab.0.bottom/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603219693044" />
     <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609841" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1603208609840">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="413" key="GridCell.Tab.0.center" timestamp="1603219693044">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.center/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
+    <state width="2517" height="413" key="GridCell.Tab.0.center/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603219693044" />
     <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609840" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1603208609840">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="413" key="GridCell.Tab.0.left" timestamp="1603219693044">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.left/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
+    <state width="2517" height="413" key="GridCell.Tab.0.left/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603219693044" />
     <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609840" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1603208609841">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="413" key="GridCell.Tab.0.right" timestamp="1603219693044">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.right/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
+    <state width="2517" height="413" key="GridCell.Tab.0.right/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603219693044" />
     <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609841" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1603208609841">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="508" key="GridCell.Tab.1.bottom" timestamp="1603219152481">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
+    <state width="2517" height="508" key="GridCell.Tab.1.bottom/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603219152481" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609841" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1603208609841">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="508" key="GridCell.Tab.1.center" timestamp="1603219152481">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
+    <state width="2517" height="508" key="GridCell.Tab.1.center/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603219152481" />
     <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609841" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1603208609841">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="508" key="GridCell.Tab.1.left" timestamp="1603219152481">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
+    <state width="2517" height="508" key="GridCell.Tab.1.left/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603219152481" />
     <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609841" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1603208609841">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="508" key="GridCell.Tab.1.right" timestamp="1603219152481">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
+    <state width="2517" height="508" key="GridCell.Tab.1.right/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603219152481" />
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609841" />
     <state x="831" y="312" width="896" height="939" key="search.everywhere.popup" timestamp="1603180701742">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="831" y="312" width="896" height="939" key="search.everywhere.popup/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603180701742" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596414945" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/upt/Hero.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

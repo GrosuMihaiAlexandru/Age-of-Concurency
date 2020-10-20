@@ -14,7 +14,7 @@ public class PathfindingDebug {
         grid.displayGrid();
         System.out.println();
 
-        /*Hero hero = new Hero(1,1);
+        Hero hero = new Hero(1,1, null);
         grid.tileFromPosition(1, 1).tileContent = hero;
         grid.displayGrid();
 
@@ -23,10 +23,15 @@ public class PathfindingDebug {
         hero.printMap();
         ArrayList<Unit.PathfindingTile> path = hero.getPathToDestination(8,6);
 
-        for (Unit.PathfindingTile ptile: path) {
-            grid.tileFromPosition(ptile.parentX, ptile.parentY).tileContent = new Unpassable('#');
-        }*/
+        for (Unit.PathfindingTile p : path) {
+            // grid.tileFromPosition(p.selfX, p.selfY).tileContent = new Unpassable('#');
+            System.out.println(p.selfX + " : " + p.selfY);
+        }
 
+        System.out.println();
+        hero.printMap();
+
+        return;
     }
 
 }
