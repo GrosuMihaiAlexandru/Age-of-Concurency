@@ -19,6 +19,13 @@ public abstract class Unit
     // List of current available interactables
     protected ArrayList<IInteractable> interactables = new ArrayList<>();
 
+    public Unit(int x, int y, Player player)
+    {
+        this.posX = x;
+        this.posY = y;
+        this.player = player;
+    }
+
     public void Move()
     {
         // pathfinding
@@ -26,17 +33,6 @@ public abstract class Unit
 
     public void setGrid(Grid grid) {
         this.grid = grid;
-    }
-
-    public void getAdjacentInteractables()
-    {
-        var neighbours = grid.getNeighbours(grid.tileFromPosition(posX, posY));
-
-        for (Tile t : neighbours)
-        {
-            if (t.tileContent instanceof Resource)
-                interactables.add((IInteractable)t);
-        }
     }
 
     public Player getPlayer() {

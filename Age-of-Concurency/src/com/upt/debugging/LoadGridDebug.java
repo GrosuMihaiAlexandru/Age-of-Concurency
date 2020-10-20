@@ -11,7 +11,7 @@ public class LoadGridDebug {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Grid grid = new Grid("Age-of-Concurency\\scenarios\\1.txt");
+        Grid grid = new Grid("scenarios\\1.txt");
         grid.displayGrid();
 
     }

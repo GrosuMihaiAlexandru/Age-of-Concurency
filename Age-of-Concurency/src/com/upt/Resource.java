@@ -19,10 +19,16 @@ public class Resource implements ITileContent, IInteractable
         this.resourceValue = value;
     }
 
-    public void collectResource(Player player)
+    public synchronized void collectResource(Player player)
     {
+        if (resourceValue <= 0)
+            return;
+
         // probleme de concurenta
         resourceValue --;
+
+        System.out.print("resource left: " + resourceValue + "\n");
+        player.addResource(resourceType, 1);
     }
 
     public ResourceType getResourceType()
