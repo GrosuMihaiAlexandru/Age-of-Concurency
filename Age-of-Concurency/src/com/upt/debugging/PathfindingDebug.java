@@ -18,7 +18,9 @@ public class PathfindingDebug {
         grid.tileFromPosition(1, 1).tileContent = hero;
         grid.displayGrid();
 
+        hero.setGrid(grid);
         hero.createLeeMatrix();
+        hero.printMap();
         ArrayList<Unit.PathfindingTile> path = hero.getPathToDestination(8,6);
 
         for (Unit.PathfindingTile ptile: path) {

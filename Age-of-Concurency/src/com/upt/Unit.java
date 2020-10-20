@@ -1,5 +1,6 @@
 package com.upt;
 
+import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -21,6 +22,10 @@ public abstract class Unit
     public void Move()
     {
         // pathfinding
+    }
+
+    public void setGrid(Grid grid) {
+        this.grid = grid;
     }
 
     public void getAdjacentInteractables()
@@ -78,6 +83,18 @@ public abstract class Unit
         }
 
         return path;
+    }
+
+    public void printMap() {
+        for (int i = 0; i < grid.getWidth(); i++) {
+            for (int j = 0; j < grid.getHeight(); j++) {
+                if (map[i][j] != null)
+                    System.out.print(map[i][j].distance);
+                else
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
     }
 
     public class PathfindingTile
