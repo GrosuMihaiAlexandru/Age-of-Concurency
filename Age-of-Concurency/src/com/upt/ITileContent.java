@@ -2,5 +2,5 @@ package com.upt;
 
 public interface ITileContent
 {
-    String displayContent();
+    char getSymbol();
 }

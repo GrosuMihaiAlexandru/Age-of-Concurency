@@ -4,12 +4,18 @@ public class Resource implements ITileContent, IInteractable
 {
     public enum ResourceType { food, wood, gold, stone}
 
+
     private ResourceType resourceType;
     private int resourceValue;
 
     public Resource(ResourceType resourceType, int value)
     {
         this.resourceType = resourceType;
+        this.resourceValue = value;
+    }
+
+    public Resource (char resourceSymbol, int value) {
+        this.resourceType = toResourceType(resourceSymbol);
         this.resourceValue = value;
     }
 
@@ -31,24 +37,53 @@ public class Resource implements ITileContent, IInteractable
     }
 
     @Override
-    public String displayContent() {
-        String display = "F";
-        switch (resourceType)
+    public char getSymbol() {
+        return toCharacter(resourceType);
+    }
+
+    private static char toCharacter(ResourceType type) {
+
+        char c = 'E';
+
+        switch (type)
         {
             case food:
-                display = "F";
+                c = 'F';
                 break;
             case wood:
-                display = "W";
+                c = 'W';
                 break;
             case gold:
-                display = "G";
+                c = 'G';
                 break;
             case stone:
-                display = "S";
+                c = 'S';
                 break;
         }
 
-        return display;
+        return c;
+    }
+
+    public static ResourceType toResourceType(char character) {
+
+        ResourceType type = null;
+
+        switch (character) {
+            case 'F':
+                type = ResourceType.food;
+                break;
+            case 'W':
+                type = ResourceType.wood;
+                break;
+            case 'G':
+                type = ResourceType.gold;
+                break;
+            case 'S':
+                type = ResourceType.stone;
+                break;
+        }
+
+        return type;
+
     }
 }

@@ -1,6 +1,5 @@
 package com.upt;
 
-import java.util.AbstractQueue;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -40,7 +39,7 @@ public abstract class Unit
     }
 
     public void CreateLeeMatrix() {
-        map = new PathfindingTile[grid.getGridSizeX()][grid.getGridSizeY()];
+        map = new PathfindingTile[grid.getWidth()][grid.getHeight()];
         map[posX][posY] = new PathfindingTile(posX, posY, 0);
         queue.clear(); // clear old stuff
         queue.add(grid.tileFromPosition(posX, posY)); // add current position of the unit
