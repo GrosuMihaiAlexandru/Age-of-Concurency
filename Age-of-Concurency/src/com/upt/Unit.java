@@ -65,6 +65,22 @@ public abstract class Unit
         }
     }
 
+    public ArrayList<PathfindingTile> getPathToDestination(int destX, int destY)
+    {
+        int currentX = destX;
+        int currentY = destY;
+        ArrayList<PathfindingTile> path = new ArrayList<>();
+
+        while(currentX != posX || currentY != posY)
+        {
+            path.add(map[currentX][currentY]);
+            currentX = map[currentX][currentY].parentX;
+            currentY = map[currentX][currentY].parentY;
+        }
+
+        return path;
+    }
+
     class PathfindingTile
     {
         int parentX;

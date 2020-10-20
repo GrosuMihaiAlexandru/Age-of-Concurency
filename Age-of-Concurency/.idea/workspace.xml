@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="99d12914-185e-454a-9ef1-2db3b967bac7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/upt/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/upt/Grid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/upt/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/upt/Unit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +80,8 @@
       <workItem from="1602578062139" duration="256000" />
       <workItem from="1602578350652" duration="272000" />
       <workItem from="1602578636558" duration="98000" />
-      <workItem from="1603179345005" duration="5861000" />
+      <workItem from="1603179345005" duration="5915000" />
+      <workItem from="1603192327509" duration="938000" />
     </task>
     <servers />
   </component>
