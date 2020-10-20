@@ -38,7 +38,7 @@ public abstract class Unit
         return player;
     }
 
-    public void CreateLeeMatrix() {
+    public void createLeeMatrix() {
         map = new PathfindingTile[grid.getWidth()][grid.getHeight()];
         map[posX][posY] = new PathfindingTile(posX, posY, 0);
         queue.clear(); // clear old stuff
@@ -80,11 +80,11 @@ public abstract class Unit
         return path;
     }
 
-    class PathfindingTile
+    public class PathfindingTile
     {
-        int parentX;
-        int parentY;
-        int distance;
+        public int parentX;
+        public int parentY;
+        public int distance;
 
         public PathfindingTile(int parentX, int parentY, int distance)
         {

@@ -34,7 +34,7 @@ public class Tile {
 
     public char getSymbol() {
         if (tileContent == null)
-            return ' ';
+            return '_';
         else
             return tileContent.getSymbol();
     }

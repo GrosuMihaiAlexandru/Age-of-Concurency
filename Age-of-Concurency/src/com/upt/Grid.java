@@ -28,7 +28,7 @@ public class Grid
         {
             for (int x = 0; x < this.width; x++)
             {
-                tiles[x][y] = new Tile(x, y, '#');
+                tiles[x][y] = new Tile(x, y, ' ');
             }
         }
     }
