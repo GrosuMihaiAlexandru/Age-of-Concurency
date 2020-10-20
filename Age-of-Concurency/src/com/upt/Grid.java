@@ -6,7 +6,17 @@ public class Grid
 {
     private Tile[][] tiles;
 
-    private int gridSizeX, gridSizeY;
+    private int gridSizeX;
+
+    public int getGridSizeX() {
+        return gridSizeX;
+    }
+
+    public int getGridSizeY() {
+        return gridSizeY;
+    }
+
+    private int gridSizeY;
 
     public Grid(int width, int height)
     {

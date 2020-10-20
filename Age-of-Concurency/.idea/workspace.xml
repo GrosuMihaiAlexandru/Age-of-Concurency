@@ -20,8 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99d12914-185e-454a-9ef1-2db3b967bac7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/upt/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/upt/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/upt/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/upt/Unit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +81,7 @@
       <workItem from="1602578062139" duration="256000" />
       <workItem from="1602578350652" duration="272000" />
       <workItem from="1602578636558" duration="98000" />
+      <workItem from="1603179345005" duration="5861000" />
     </task>
     <servers />
   </component>
@@ -99,9 +101,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="722" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1602596928298">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="963" y="306" key="#com.intellij.ide.util.MemberChooser" timestamp="1603184029846">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
+    <state x="963" y="306" key="#com.intellij.ide.util.MemberChooser/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603184029846" />
     <state x="722" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596928298" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602596450061">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -127,9 +130,10 @@
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.right/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602610746086" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602596414945">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="831" y="312" width="896" height="939" key="search.everywhere.popup" timestamp="1603180701742">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
+    <state x="831" y="312" width="896" height="939" key="search.everywhere.popup/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603180701742" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596414945" />
   </component>
 </project>
