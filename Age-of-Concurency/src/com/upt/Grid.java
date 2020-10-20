@@ -48,10 +48,8 @@ public class Grid
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-//                System.out.print(lines.get(y).charAt(x));
                 tiles[x][y] = new Tile(x, y, lines.get(y).charAt(x));
             }
-            System.out.println();
         }
     }
 
