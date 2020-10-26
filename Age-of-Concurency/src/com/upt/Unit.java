@@ -3,12 +3,30 @@ package com.upt;
 import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public abstract class Unit
 {
     // The owner of the unit
     protected Player player;
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
     protected Grid grid;
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
 
     protected int posX;
     protected int posY;
@@ -80,13 +98,14 @@ public abstract class Unit
             currentX = x;
             currentY = y;
         }
+        Collections.reverse(path);
 
         return path;
     }
 
     public void printMap() {
-        for (int i = 0; i < grid.getWidth(); i++) {
-            for (int j = 0; j < grid.getHeight(); j++) {
+        for (int i = 0; i < grid.getHeight(); i++) {
+            for (int j = 0; j < grid.getWidth(); j++) {
                 if (map[i][j] != null)
                 {
                     if (map[i][j].distance < 10)

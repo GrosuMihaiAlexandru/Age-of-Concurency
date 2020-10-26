@@ -68,6 +68,10 @@ public class Grid
                 tiles[x][y] = new Tile(x, y, ' ');
             }
         }
+
+        for(int i = 0; i < 8; i++)
+            tiles[3][i] = new Tile(3, i, '#');
+
     }
 
     public ArrayList<Tile> getNeighbours(Tile tile)
