@@ -4,9 +4,15 @@ import java.util.ArrayList;
 
 public class Hero extends Unit implements ITileContent
 {
+    private char symbol;
 
     public Hero(int x, int y, Player player) {
         super(x, y, player);
+    }
+
+    public Hero(int x, int y, Player player, char symbol) {
+        super(x, y, player);
+        this.symbol = symbol;
     }
 
     public ArrayList<IInteractable> getAdjacentInteractables()
@@ -30,7 +36,7 @@ public class Hero extends Unit implements ITileContent
     }
 
     public char getSymbol() {
-        return 'H';
+        return symbol;
     }
 
 }
