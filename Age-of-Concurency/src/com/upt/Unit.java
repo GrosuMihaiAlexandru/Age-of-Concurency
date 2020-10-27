@@ -68,7 +68,7 @@ public abstract class Unit
             for (Tile neighborPos : neighborPositions) {
                 // System.out.println(neighborPos.getPosX() + ":" + neighborPos.getPosY() + " -> " + (map[neighborPos.getPosX()][neighborPos.getPosY()] == null ? "null" : "non null") + " -> " + (grid.tileFromPosition(neighborPos.getPosX(), neighborPos.getPosY()).tileContent == null ? "null" : "non null"));
 
-                if (map[neighborPos.getPosX()][neighborPos.getPosY()] == null && Grid.getInstance().tileFromPosition(neighborPos.getPosX(), neighborPos.getPosY()).tileContent == null) // node hasn't been visited before and is walkable (has no tileContent)
+                if (map[neighborPos.getPosX()][neighborPos.getPosY()] == null && Grid.getInstance().tileFromPosition(neighborPos.getPosX(), neighborPos.getPosY()).getTileContent() == null) // node hasn't been visited before and is walkable (has no tileContent)
                 {
                     queue.add(neighborPos);
                     map[neighborPos.getPosX()][neighborPos.getPosY()] = new PathfindingTile(neighborPos.getPosX(), neighborPos.getPosY(), currentPos.getPosX(), currentPos.getPosY(), map[currentPos.getPosX()][currentPos.getPosY()].distance + 1);

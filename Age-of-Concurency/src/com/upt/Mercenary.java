@@ -21,8 +21,8 @@ public class Mercenary extends Unit implements ITileContent, IAttacker {
 
         for (Tile t : neighbours)
         {
-            if (t.tileContent instanceof Resource)
-                attackers.add((IAttacker) t.tileContent);
+            if (t.getTileContent() instanceof Resource)
+                attackers.add((IAttacker) t.getTileContent());
         }
 
         return attackers;

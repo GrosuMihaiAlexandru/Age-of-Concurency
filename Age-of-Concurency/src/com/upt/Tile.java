@@ -1,10 +1,24 @@
 package com.upt;
 
+import java.util.concurrent.Semaphore;
+
 public class Tile {
 
     private int posX, posY;
 
-    public ITileContent tileContent;
+    private ITileContent tileContent;
+
+    Semaphore tileContentSemaphore = new Semaphore(1); // require release
+
+    public ITileContent getTileContent()
+    {
+        return tileContent;
+    }
+
+    public void setTileContent(ITileContent tileContent)
+    {
+        this.tileContent = tileContent;
+    }
 
     public Tile (int x, int y)
     {

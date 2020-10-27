@@ -22,8 +22,8 @@ public class Hero extends Unit implements ITileContent
 
         for (Tile t : neighbours)
         {
-            if (t.tileContent instanceof Resource)
-                interactables.add((IInteractable)t.tileContent);
+            if (t.getTileContent() instanceof Resource)
+                interactables.add((IInteractable)t.getTileContent());
         }
 
         return interactables;

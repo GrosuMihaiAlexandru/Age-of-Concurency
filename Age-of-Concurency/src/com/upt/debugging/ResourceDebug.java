@@ -12,12 +12,12 @@ public class ResourceDebug {
         System.out.println();
 
         Player player = new Player(2, 2);
-        Grid.getInstance().tileFromPosition(2 , 2).tileContent = player.getHero();
+        Grid.getInstance().tileFromPosition(2 , 2).setTileContent(player.getHero());
         Grid.getInstance().displayGrid();
 
 
         Player player2 = new Player(3, 1);
-        Grid.getInstance().tileFromPosition(3 , 1).tileContent = player2.getHero();
+        Grid.getInstance().tileFromPosition(3 , 1).setTileContent(player2.getHero());
 
         Grid.getInstance().displayGrid();
 
