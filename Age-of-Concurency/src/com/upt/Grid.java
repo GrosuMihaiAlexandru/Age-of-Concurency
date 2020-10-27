@@ -5,8 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Grid
-{
+public class Grid {
     private Tile[][] tiles;
 
     private int width;
@@ -21,8 +20,24 @@ public class Grid
 
     private int height;
 
+    private static Grid grid;
 
-    public Grid(String pathname) {
+    private static String gridPath = "scenarios\\default.txt";
+
+    public static void setGridPath(String gridPath)
+    {
+        Grid.gridPath = gridPath;
+    }
+
+    public static Grid getInstance() {
+        if (grid == null) {
+            grid = new Grid(gridPath);
+        }
+
+        return grid;
+    }
+
+    private Grid(String pathname) {
 
         ArrayList<String> lines = new ArrayList<String>();
         Scanner input = null;
@@ -55,7 +70,7 @@ public class Grid
 
 
 
-    public Grid(int width, int height)
+    private Grid(int width, int height)
     {
         this.width = width;
         this.height = height;
@@ -68,7 +83,6 @@ public class Grid
                 tiles[x][y] = new Tile(x, y, ' ');
             }
         }
-
     }
 
     public ArrayList<Tile> getNeighbours(Tile tile)

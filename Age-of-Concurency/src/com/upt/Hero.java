@@ -12,7 +12,7 @@ public class Hero extends Unit implements ITileContent
     public ArrayList<IInteractable> getAdjacentInteractables()
     {
         var interactables = new ArrayList<IInteractable>();
-        var neighbours = grid.getNeighbours(grid.tileFromPosition(posX, posY));
+        var neighbours = Grid.getInstance().getNeighbours(Grid.getInstance().tileFromPosition(posX, posY));
 
         for (Tile t : neighbours)
         {

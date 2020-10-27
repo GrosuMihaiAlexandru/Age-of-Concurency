@@ -18,8 +18,6 @@ public abstract class Unit
         this.posY = posY;
     }
 
-    protected Grid grid;
-
     public int getPosX() {
         return posX;
     }
@@ -49,19 +47,15 @@ public abstract class Unit
         // pathfinding
     }
 
-    public void setGrid(Grid grid) {
-        this.grid = grid;
-    }
-
     public Player getPlayer() {
         return player;
     }
 
     public void createLeeMatrix() {
-        map = new PathfindingTile[grid.getWidth()][grid.getHeight()];
+        map = new PathfindingTile[Grid.getInstance().getWidth()][Grid.getInstance().getHeight()];
         map[posX][posY] = new PathfindingTile(posX, posY, -1, -1, 0);
         queue.clear(); // clear old stuff
-        queue.add(grid.tileFromPosition(posX, posY)); // add current position of the unit
+        queue.add(Grid.getInstance().tileFromPosition(posX, posY)); // add current position of the unit
 
         Tile currentPos;
         ArrayList<Tile> neighborPositions;
@@ -69,12 +63,12 @@ public abstract class Unit
         while (!queue.isEmpty()) {
             currentPos = queue.remove(); // get the current position from the queue
 
-            neighborPositions = grid.getNeighbours(currentPos);
+            neighborPositions = Grid.getInstance().getNeighbours(currentPos);
 
             for (Tile neighborPos : neighborPositions) {
                 // System.out.println(neighborPos.getPosX() + ":" + neighborPos.getPosY() + " -> " + (map[neighborPos.getPosX()][neighborPos.getPosY()] == null ? "null" : "non null") + " -> " + (grid.tileFromPosition(neighborPos.getPosX(), neighborPos.getPosY()).tileContent == null ? "null" : "non null"));
 
-                if (map[neighborPos.getPosX()][neighborPos.getPosY()] == null && grid.tileFromPosition(neighborPos.getPosX(), neighborPos.getPosY()).tileContent == null) // node hasn't been visited before and is walkable (has no tileContent)
+                if (map[neighborPos.getPosX()][neighborPos.getPosY()] == null && Grid.getInstance().tileFromPosition(neighborPos.getPosX(), neighborPos.getPosY()).tileContent == null) // node hasn't been visited before and is walkable (has no tileContent)
                 {
                     queue.add(neighborPos);
                     map[neighborPos.getPosX()][neighborPos.getPosY()] = new PathfindingTile(neighborPos.getPosX(), neighborPos.getPosY(), currentPos.getPosX(), currentPos.getPosY(), map[currentPos.getPosX()][currentPos.getPosY()].distance + 1);
@@ -104,8 +98,8 @@ public abstract class Unit
     }
 
     public void printMap() {
-        for (int i = 0; i < grid.getHeight(); i++) {
-            for (int j = 0; j < grid.getWidth(); j++) {
+        for (int i = 0; i < Grid.getInstance().getHeight(); i++) {
+            for (int j = 0; j < Grid.getInstance().getWidth(); j++) {
                 if (map[i][j] != null)
                 {
                     if (map[i][j].distance < 10)

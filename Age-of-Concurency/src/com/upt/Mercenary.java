@@ -17,7 +17,7 @@ public class Mercenary extends Unit implements ITileContent, IAttacker {
     public ArrayList<IAttacker> getAdjacentAttackers()
     {
         var attackers = new ArrayList<IAttacker>();
-        var neighbours = grid.getNeighbours(grid.tileFromPosition(posX, posY));
+        var neighbours = Grid.getInstance().getNeighbours(Grid.getInstance().tileFromPosition(posX, posY));
 
         for (Tile t : neighbours)
         {

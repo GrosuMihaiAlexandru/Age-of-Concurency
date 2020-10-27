@@ -7,21 +7,19 @@ import java.util.ArrayList;
 public class ResourceDebug {
 
     public static void main(String[] args) {
-        Grid grid = new Grid("scenarios\\1.txt");
-        grid.displayGrid();
+        Grid.setGridPath("scenarios\\1.txt");
+        Grid.getInstance().displayGrid();
         System.out.println();
 
         Player player = new Player(2, 2);
-        player.getHero().setGrid(grid);
-        grid.tileFromPosition(2 , 2).tileContent = player.getHero();
-        grid.displayGrid();
+        Grid.getInstance().tileFromPosition(2 , 2).tileContent = player.getHero();
+        Grid.getInstance().displayGrid();
 
 
         Player player2 = new Player(3, 1);
-        player2.getHero().setGrid(grid);
-        grid.tileFromPosition(3 , 1).tileContent = player2.getHero();
+        Grid.getInstance().tileFromPosition(3 , 1).tileContent = player2.getHero();
 
-        grid.displayGrid();
+        Grid.getInstance().displayGrid();
 
         player.start();
         player2.start();

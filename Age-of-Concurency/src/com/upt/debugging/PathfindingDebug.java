@@ -10,15 +10,14 @@ import java.util.ArrayList;
 public class PathfindingDebug {
 
     public static void main(String[] args) {
-        Grid grid = new Grid("scenarios\\pathfinding_debug01.txt");
-        grid.displayGrid();
+        Grid.setGridPath("scenarios\\pathfinding_debug01.txt");
+        Grid.getInstance().displayGrid();
         System.out.println();
 
         Hero hero = new Hero(1,1, null);
-        grid.tileFromPosition(1, 1).tileContent = hero;
-        grid.displayGrid();
+        Grid.getInstance().tileFromPosition(1, 1).tileContent = hero;
+        Grid.getInstance().displayGrid();
 
-        hero.setGrid(grid);
         hero.createLeeMatrix();
         hero.printMap();
         ArrayList<Unit.PathfindingTile> path = hero.getPathToDestination(8,6);
@@ -38,12 +37,12 @@ public class PathfindingDebug {
                 for ( int i = 0; i < path.size(); i++) {
                     Unit.PathfindingTile p = path.get(i);
 
-                    grid.tileFromPosition(hero.getPosX(), hero.getPosY()).tileContent = null;
+                    Grid.getInstance().tileFromPosition(hero.getPosX(), hero.getPosY()).tileContent = null;
                     hero.setPosX(p.selfX);
                     hero.setPosY(p.selfY);
-                    grid.tileFromPosition(p.selfX, p.selfY).tileContent = hero;
+                    Grid.getInstance().tileFromPosition(p.selfX, p.selfY).tileContent = hero;
                     System.out.println();
-                    grid.displayGrid();
+                    Grid.getInstance().displayGrid();
                     try {
                         sleep(500);
                     }
