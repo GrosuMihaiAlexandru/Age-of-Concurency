@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class PathfindingDebug {
 
     public static void main(String[] args) {
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid("scenarios\\pathfinding_debug01.txt");
         grid.displayGrid();
         System.out.println();
 
