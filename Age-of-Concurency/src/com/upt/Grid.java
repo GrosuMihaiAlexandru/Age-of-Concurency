@@ -28,7 +28,7 @@ public class Grid
         Scanner input = null;
 
         try {
-            input = new Scanner(new File(pathname));
+            input = new Scanner(new File(pathname)).useDelimiter("\n");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -68,9 +68,6 @@ public class Grid
                 tiles[x][y] = new Tile(x, y, ' ');
             }
         }
-
-        for(int i = 0; i < 8; i++)
-            tiles[3][i] = new Tile(3, i, '#');
 
     }
 
