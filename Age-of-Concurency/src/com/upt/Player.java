@@ -1,5 +1,7 @@
 package com.upt;
 
+import java.util.ArrayList;
+
 public class Player extends Thread {
 
     private boolean isAlive;
@@ -8,10 +10,14 @@ public class Player extends Thread {
 
     private Hero hero;
 
+    private ArrayList<Mercenary> mercenaries;
+
     public Player(int heroPosX, int heroPosY)
     {
         createCharacter(heroPosX, heroPosY);
         isAlive = true;
+
+        mercenaries = new ArrayList<>();
     }
 
     public void run()
@@ -47,6 +53,11 @@ public class Player extends Thread {
 
     public Hero getHero() {
         return hero;
+    }
+
+    public int getResource(Resource.ResourceType resourceType)
+    {
+        return resources[resourceType.ordinal()];
     }
 
 }

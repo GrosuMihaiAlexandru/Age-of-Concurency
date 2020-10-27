@@ -55,6 +55,17 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Application.PathfindingDebug">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoadGridDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.upt.debugging.LoadGridDebug" />
       <module name="Age-of-Concurency" />
@@ -104,17 +115,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.PathfindingDebug" />
@@ -157,11 +157,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="963" y="306" key="#com.intellij.ide.util.MemberChooser" timestamp="1603713416038">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="722" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1603732053838">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="963" y="306" key="#com.intellij.ide.util.MemberChooser/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603713416038" />
-    <state x="722" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603201308134" />
+    <state x="722" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603732053838" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602596450061">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
