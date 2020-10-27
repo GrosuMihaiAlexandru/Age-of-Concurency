@@ -8,7 +8,11 @@ public class Tile {
 
     private ITileContent tileContent;
 
-    Semaphore tileContentSemaphore = new Semaphore(1); // require release
+    public Semaphore getTileContentSemaphore() {
+        return tileContentSemaphore;
+    }
+
+    private Semaphore tileContentSemaphore = new Semaphore(1); // acquire release
 
     public ITileContent getTileContent()
     {

@@ -14,14 +14,15 @@ public class PathfindingDebug {
         Grid.getInstance().displayGrid();
         System.out.println();
 
+        // check whole path
+        // do concurrency
+
         Hero hero1 = new Hero(1,1, null, '1');
         Grid.getInstance().tileFromPosition(1, 1).setTileContent(hero1);
         int dest1X = 8, dest1Y = 6;
 
         new Thread() {
             public void run() {
-
-
                 while (hero1.getPosX() != dest1X && hero1.getPosY() != dest1Y) {
                     hero1.createLeeMatrix();
                     // hero2.printMap(); the lee matrix
@@ -30,20 +31,18 @@ public class PathfindingDebug {
                     for (int i = 0; i < path.size(); i++) {
                         Unit.PathfindingTile t = path.get(i);
 
-                        if (Grid.getInstance().tileFromPosition(t.selfX, t.selfY).getTileContent() == null) {
-                            // cell is empty, start moving
-                            Grid.getInstance().tileFromPosition(hero1.getPosX(), hero1.getPosY()).setTileContent(null);
+                        boolean successful = Grid.getInstance().moveTileContent(hero1.getPosX(), hero1.getPosY(), t.selfX, t.selfY, hero1);
+                        if (successful)
+                        {
                             hero1.setPosX(t.selfX);
                             hero1.setPosY(t.selfY);
-                            Grid.getInstance().tileFromPosition(t.selfX, t.selfY).setTileContent(hero1);
-                            System.out.println();
                             try {
-                                sleep(1500);
+                                sleep(1000);
                             } catch (Exception e) {
                             }
                         } else {
                             // something is in the way. Recalculate path and continue moving
-                            continue;
+                            break;
                         }
                     }
                 }
@@ -56,11 +55,6 @@ public class PathfindingDebug {
 
         new Thread() {
             public void run() {
-                try {
-                    sleep(10);
-                } catch (Exception e) {
-                }
-
                 while (hero2.getPosX() != dest2X && hero2.getPosY() != dest2Y) {
                     hero2.createLeeMatrix();
                     // hero2.printMap(); the lee matrix
@@ -69,15 +63,13 @@ public class PathfindingDebug {
                     for (int i = 0; i < path.size(); i++) {
                         Unit.PathfindingTile t = path.get(i);
 
-                        if (Grid.getInstance().tileFromPosition(t.selfX, t.selfY).getTileContent() == null) {
-                            // cell is empty, start moving
-                            Grid.getInstance().tileFromPosition(hero2.getPosX(), hero2.getPosY()).setTileContent(null);
+                        boolean successful = Grid.getInstance().moveTileContent(hero2.getPosX(), hero2.getPosY(), t.selfX, t.selfY, hero2);
+                        if (successful)
+                        {
                             hero2.setPosX(t.selfX);
                             hero2.setPosY(t.selfY);
-                            Grid.getInstance().tileFromPosition(t.selfX, t.selfY).setTileContent(hero2);
-                            System.out.println();
                             try {
-                                sleep(1500);
+                                sleep(1000);
                             } catch (Exception e) {
                             }
                         } else {
@@ -101,7 +93,7 @@ public class PathfindingDebug {
                     Grid.getInstance().displayGrid();
 
                     try {
-                        sleep(500);
+                        sleep(1000);
                     } catch (Exception e) {
                     }
                 }

@@ -68,8 +68,6 @@ public class Grid {
         }
     }
 
-
-
     private Grid(int width, int height)
     {
         this.width = width;
@@ -83,6 +81,33 @@ public class Grid {
                 tiles[x][y] = new Tile(x, y, ' ');
             }
         }
+    }
+
+    public boolean moveTileContent(int tilePosX, int tilePosY, int destX, int destY, ITileContent content)
+    {
+        Tile currentTile = tileFromPosition(tilePosX, tilePosY);
+        Tile nextTile = tileFromPosition(destX, destY);
+
+        boolean successful = false;
+
+        try {
+            currentTile.getTileContentSemaphore().acquire();
+            nextTile.getTileContentSemaphore().acquire();
+        } catch (Exception e) { };
+
+        if (nextTile.getTileContent() == null)
+        {
+            // cell is empty, start moving
+            currentTile.setTileContent(null);
+            nextTile.setTileContent(content);
+
+            successful = true;
+        }
+
+        currentTile.getTileContentSemaphore().release();
+        nextTile.getTileContentSemaphore().release();
+
+        return successful;
     }
 
     public ArrayList<Tile> getNeighbours(Tile tile)
