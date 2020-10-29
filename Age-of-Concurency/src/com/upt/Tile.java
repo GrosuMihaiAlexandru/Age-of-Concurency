@@ -6,7 +6,7 @@ public class Tile {
 
     private int posX, posY;
 
-    private ITileContent tileContent;
+    private volatile ITileContent tileContent;
 
     public Semaphore getTileContentSemaphore() {
         return tileContentSemaphore;

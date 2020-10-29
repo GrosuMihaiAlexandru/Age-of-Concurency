@@ -52,7 +52,20 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.PathfindingDebug">
+  <component name="RunManager" selected="Application.AttackerDebug">
+    <configuration name="AttackerDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.upt.debugging.AttackerDebug" />
+      <module name="Age-of-Concurency" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.upt.debugging.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoadGridDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.upt.debugging.LoadGridDebug" />
       <module name="Age-of-Concurency" />
@@ -104,6 +117,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AttackerDebug" />
         <item itemvalue="Application.PathfindingDebug" />
         <item itemvalue="Application.ResourceDebug" />
         <item itemvalue="Application.LoadGridDebug" />
@@ -155,34 +169,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596450061" />
-    <state width="2517" height="298" key="GridCell.Tab.0.bottom" timestamp="1603888839051">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="938" height="269" key="GridCell.Tab.0.bottom" timestamp="1603995046785">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.bottom/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
     <state width="2517" height="298" key="GridCell.Tab.0.bottom/-1280.232.1280.1024/0.0.2560.1440/2560.-263.1080.1920@0.0.2560.1440" timestamp="1603888839051" />
     <state width="2517" height="298" key="GridCell.Tab.0.bottom/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603821712495" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609841" />
-    <state width="2517" height="298" key="GridCell.Tab.0.center" timestamp="1603888839051">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="938" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603995046785" />
+    <state width="938" height="269" key="GridCell.Tab.0.center" timestamp="1603995046784">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.center/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
     <state width="2517" height="298" key="GridCell.Tab.0.center/-1280.232.1280.1024/0.0.2560.1440/2560.-263.1080.1920@0.0.2560.1440" timestamp="1603888839051" />
     <state width="2517" height="298" key="GridCell.Tab.0.center/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603821712495" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609840" />
-    <state width="2517" height="298" key="GridCell.Tab.0.left" timestamp="1603888839050">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="938" height="269" key="GridCell.Tab.0.center/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603995046784" />
+    <state width="938" height="269" key="GridCell.Tab.0.left" timestamp="1603995046783">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.left/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
     <state width="2517" height="298" key="GridCell.Tab.0.left/-1280.232.1280.1024/0.0.2560.1440/2560.-263.1080.1920@0.0.2560.1440" timestamp="1603888839050" />
     <state width="2517" height="298" key="GridCell.Tab.0.left/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603821712495" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609840" />
-    <state width="2517" height="298" key="GridCell.Tab.0.right" timestamp="1603888839051">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="938" height="269" key="GridCell.Tab.0.left/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603995046783" />
+    <state width="938" height="269" key="GridCell.Tab.0.right" timestamp="1603995046784">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="295" key="GridCell.Tab.0.right/-1280.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1602578622771" />
     <state width="2517" height="298" key="GridCell.Tab.0.right/-1280.232.1280.1024/0.0.2560.1440/2560.-263.1080.1920@0.0.2560.1440" timestamp="1603888839051" />
     <state width="2517" height="298" key="GridCell.Tab.0.right/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603821712495" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603208609841" />
+    <state width="938" height="269" key="GridCell.Tab.0.right/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603995046784" />
     <state width="2517" height="508" key="GridCell.Tab.1.bottom" timestamp="1603219152481">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
@@ -207,10 +221,15 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="936" y="340" key="run.anything.popup/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603791011667" />
-    <state x="831" y="312" width="896" height="939" key="search.everywhere.popup" timestamp="1603180701742">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1603984513759">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="831" y="312" width="896" height="939" key="search.everywhere.popup/-1280.336.1280.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1603180701742" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1602596414945" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.179.1600.860@0.0.1920.1040" timestamp="1603984513759" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Age_of_Concurency$AttackerDebug.ic" NAME="AttackerDebug Coverage Results" MODIFIED="1603984836765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.upt.debugging.*</FILTER>
+    </SUITE>
   </component>
 </project>

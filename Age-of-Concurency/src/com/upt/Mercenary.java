@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Mercenary extends Unit implements ITileContent, IAttacker {
 
-    private float health;
-    private float attack;
+    private volatile int health;
+    private int attack;
 
     public Mercenary(int x, int y, Player player) {
         super(x, y, player);
@@ -21,7 +21,7 @@ public class Mercenary extends Unit implements ITileContent, IAttacker {
 
         for (Tile t : neighbours)
         {
-            if (t.getTileContent() instanceof Resource)
+            if (t.getTileContent() instanceof IAttacker)
                 attackers.add((IAttacker) t.getTileContent());
         }
 
@@ -38,13 +38,27 @@ public class Mercenary extends Unit implements ITileContent, IAttacker {
         attacker.takeDamage(this.attack);
     }
 
+    // in caz ca se bat mercenarii intre ei metoda este synchronized
     @Override
-    public void takeDamage(float damage)
+    public void takeDamage(int damage)
     {
-        // probleme de concuren ta
-        if (health > 0)
-        {
-            health -= damage;
-        }
+        health -= damage;
+        if (health <= 0)
+            onDeath();
+    }
+
+    public boolean isAlive()
+    {
+        return health > 0;
+    }
+
+    private void onDeath()
+    {
+        Grid.getInstance().tileFromPosition(posX, posY).setTileContent(null);
+    }
+
+    public int getHealth()
+    {
+        return health;
     }
 }

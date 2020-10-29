@@ -35,6 +35,7 @@ public class Hero extends Unit implements ITileContent
         interactable.interact(this, IInteractable.ActionType.gather);
     }
 
+    public void setSymbol(char symbol) { this.symbol = symbol; }
     public char getSymbol() {
         return symbol;
     }
