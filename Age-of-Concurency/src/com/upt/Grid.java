@@ -88,12 +88,26 @@ public class Grid {
         Tile currentTile = tileFromPosition(tilePosX, tilePosY);
         Tile nextTile = tileFromPosition(destX, destY);
 
-        boolean successful = false;
-
         try {
-            currentTile.getTileContentSemaphore().acquire();
-            nextTile.getTileContentSemaphore().acquire();
-        } catch (Exception e) { };
+            if (tilePosX < destX) {
+                currentTile.getTileContentSemaphore().acquire();
+                nextTile.getTileContentSemaphore().acquire();
+            } else if (destX < tilePosX) {
+                nextTile.getTileContentSemaphore().acquire();
+                currentTile.getTileContentSemaphore().acquire();
+            } else if (tilePosY < destY) {
+                currentTile.getTileContentSemaphore().acquire();
+                nextTile.getTileContentSemaphore().acquire();
+            } else if (destY < tilePosY) {
+                nextTile.getTileContentSemaphore().acquire();
+                currentTile.getTileContentSemaphore().acquire();
+            } else {
+                System.out.println("Sum Ting Wong");
+                return false;
+            }
+        } catch (Exception e) { }
+
+        boolean successful = false;
 
         if (nextTile.getTileContent() == null)
         {
