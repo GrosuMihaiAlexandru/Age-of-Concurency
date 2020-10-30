@@ -39,9 +39,9 @@ public class Tile {
     public Tile (int x, int y, char symbol) {
         this(x, y);
         if (Unpassable.toUnpassableType(symbol) != null) {
-            tileContent = new Unpassable(symbol);
+            tileContent = new Unpassable(x, y, symbol);
         } else if (Resource.toResourceType(symbol) != null) {
-            tileContent = new Resource(symbol, 10);
+            tileContent = new Resource(x, y, symbol, 10);
         }
     }
 

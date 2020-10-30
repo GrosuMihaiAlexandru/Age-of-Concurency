@@ -3,14 +3,16 @@ package com.upt;
 
 public class Unpassable implements ITileContent{
 
+    private int posX;
+
+    private int posY;
+
     public enum UnpassableType { water, mountains}
     private UnpassableType unpassableType;
 
-    public Unpassable(UnpassableType unpassableType) {
-        this.unpassableType = unpassableType;
-    }
-
-    public Unpassable(char unpassableTypeSymbol) {
+    public Unpassable(int posX, int posY, char unpassableTypeSymbol) {
+        this.posX = posX;
+        this.posY = posY;
         this.unpassableType = toUnpassableType(unpassableTypeSymbol);
     }
 
@@ -49,4 +51,14 @@ public class Unpassable implements ITileContent{
     @Override
     public char getSymbol() {
         return toCharacter(unpassableType); }
+
+    @Override
+    public int getPosX() {
+        return posX;
+    }
+
+    @Override
+    public int getPosY() {
+        return posY;
+    }
 }

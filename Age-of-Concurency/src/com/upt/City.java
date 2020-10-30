@@ -100,6 +100,16 @@ public class City implements  ITileContent, IInteractable, IAttacker
     }
 
     @Override
+    public int getPosX() {
+        return posX;
+    }
+
+    @Override
+    public int getPosY() {
+        return posY;
+    }
+
+    @Override
     public void attack(IAttacker attacker)
     {
         attacker.takeDamage(attack);

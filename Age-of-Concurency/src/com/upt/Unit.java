@@ -1,11 +1,10 @@
 package com.upt;
 
-import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class Unit
+public abstract class Unit implements ITileContent
 {
     // The owner of the unit
     protected Player player;
@@ -51,7 +50,7 @@ public abstract class Unit
         return player;
     }
 
-    public void createLeeMatrix() {
+    private void createLeeMatrix() {
         map = new PathfindingTile[Grid.getInstance().getWidth()][Grid.getInstance().getHeight()];
         map[posX][posY] = new PathfindingTile(posX, posY, -1, -1, 0);
         queue.clear(); // clear old stuff
@@ -77,7 +76,7 @@ public abstract class Unit
         }
     }
 
-    public ArrayList<PathfindingTile> getPathToDestination(int destX, int destY)
+    private ArrayList<PathfindingTile> getPathToDestination(int destX, int destY)
     {
         int currentX = destX;
         int currentY = destY;
@@ -95,6 +94,42 @@ public abstract class Unit
         Collections.reverse(path);
 
         return path;
+    }
+
+    public void moveToDestination(int dest1X, int dest1Y, ITaskFinishedCallback callback) {
+        new Thread() {
+            public void run() {
+                while (getPosX() != dest1X && getPosY() != dest1Y) {
+                    createLeeMatrix();
+
+                    if (map[dest1X][dest1Y] == null) {
+                        callback.onFail();
+                        return;
+                    }
+
+                    // printMap(); // the lee matrix
+                    ArrayList<Unit.PathfindingTile> path = getPathToDestination(dest1X, dest1Y);
+
+                    for (int i = 0; i < path.size(); i++) {
+                        Unit.PathfindingTile t = path.get(i);
+
+                        boolean successful = Grid.getInstance().moveTileContent(getPosX(), getPosY(), t.selfX, t.selfY, Unit.this);
+                        if (successful) {
+                            setPosX(t.selfX);
+                            setPosY(t.selfY);
+                            try {
+                                sleep(1000);
+                            } catch (Exception e) {
+                            }
+                        } else {
+                            // something is in the way. Recalculate path and continue moving
+                            break;
+                        }
+                    }
+                }
+                callback.onFinish();
+            }
+        }.start();
     }
 
     public void printMap() {

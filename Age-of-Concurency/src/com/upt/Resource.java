@@ -4,31 +4,39 @@ public class Resource implements ITileContent, IInteractable
 {
     public enum ResourceType { food, wood, gold, stone}
 
+    private int posX;
+
+    private int posY;
 
     private ResourceType resourceType;
     private int resourceValue;
 
-    public Resource(ResourceType resourceType, int value)
-    {
-        this.resourceType = resourceType;
-        this.resourceValue = value;
-    }
-
-    public Resource (char resourceSymbol, int value) {
+    public Resource (int posX, int posY, char resourceSymbol, int value) {
+        this.posX = posX;
+        this.posY = posY;
         this.resourceType = toResourceType(resourceSymbol);
         this.resourceValue = value;
     }
 
     public synchronized void collectResource(Player player)
     {
-        if (resourceValue <= 0)
-            return;
-
         // probleme de concurenta
         resourceValue --;
 
+        if (resourceValue <= 0)
+        {
+            System.out.println("Resource value on death: " + resourceValue);
+            onDeath();
+            return;
+        }
+
         System.out.print("resource left: " + resourceValue + "\n");
         player.addResource(resourceType, 1);
+    }
+
+    private void onDeath()
+    {
+        Grid.getInstance().tileFromPosition(getPosX(), getPosY()).setTileContent(null);
     }
 
     public ResourceType getResourceType()
@@ -45,6 +53,16 @@ public class Resource implements ITileContent, IInteractable
     @Override
     public char getSymbol() {
         return toCharacter(resourceType);
+    }
+
+    @Override
+    public int getPosX() {
+        return posX;
+    }
+
+    @Override
+    public int getPosY() {
+        return posY;
     }
 
     private static char toCharacter(ResourceType type) {

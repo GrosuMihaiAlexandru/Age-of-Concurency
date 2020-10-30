@@ -12,11 +12,11 @@ public class AttackerDebug {
         Grid.getInstance().displayGrid();
         System.out.println();
 
-        Player player = new Player(3, 3);
+        Player player = new Player(3, 3, '1');
         player.getHero().setSymbol('H');
         Grid.getInstance().tileFromPosition(3 , 3).setTileContent(player.getHero());
 
-        Player player2 = new Player(4, 3);
+        Player player2 = new Player(4, 3, '2');
         Grid.getInstance().tileFromPosition(4 , 3).setTileContent(player2.getHero());
         player2.getHero().setSymbol('H');
 

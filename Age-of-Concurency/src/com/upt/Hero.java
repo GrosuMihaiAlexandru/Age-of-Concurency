@@ -2,7 +2,7 @@ package com.upt;
 
 import java.util.ArrayList;
 
-public class Hero extends Unit implements ITileContent
+public class Hero extends Unit
 {
     private char symbol;
 
@@ -15,7 +15,7 @@ public class Hero extends Unit implements ITileContent
         this.symbol = symbol;
     }
 
-    public ArrayList<IInteractable> getAdjacentInteractables()
+    private ArrayList<IInteractable> getAdjacentResouces()
     {
         var interactables = new ArrayList<IInteractable>();
         var neighbours = Grid.getInstance().getNeighbours(Grid.getInstance().tileFromPosition(posX, posY));
@@ -29,10 +29,43 @@ public class Hero extends Unit implements ITileContent
         return interactables;
     }
 
-
-    public void collectResource(IInteractable interactable)
+    public void startCollectingResource(Resource.ResourceType resourceType, int amount, ITaskFinishedCallback callback)
     {
-        interactable.interact(this, IInteractable.ActionType.gather);
+        int initialResource = player.getResource(resourceType);
+
+        new Thread()
+        {
+            public void run()
+            {
+                while (player.getResource(resourceType) - initialResource < amount)
+                {
+                    var interactables = getAdjacentResouces();
+
+                    if (interactables.size() > 0)
+                    {
+                        System.out.print(getName() + " Collect resource");
+                        System.out.println();
+
+                        interactables.get(0).interact(Hero.this, IInteractable.ActionType.gather);
+                    }
+                    else
+                    {
+                        callback.onFail();
+                        return;
+                    }
+
+                    try
+                    {
+                        sleep(1000);
+                    }
+                    catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                callback.onFinish();
+            }
+        }.start();
     }
 
     public void setSymbol(char symbol) { this.symbol = symbol; }

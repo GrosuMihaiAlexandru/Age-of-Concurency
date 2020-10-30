@@ -2,7 +2,7 @@ package com.upt;
 
 import java.util.ArrayList;
 
-public class Mercenary extends Unit implements ITileContent, IAttacker {
+public class Mercenary extends Unit implements IAttacker {
 
     private volatile int health;
     private int attack;
