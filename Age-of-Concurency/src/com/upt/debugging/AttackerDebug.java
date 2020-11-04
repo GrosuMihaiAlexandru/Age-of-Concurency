@@ -1,11 +1,9 @@
 package com.upt.debugging;
 
-import com.upt.City;
-import com.upt.Grid;
-import com.upt.Mercenary;
-import com.upt.Player;
+import com.upt.*;
 
 public class AttackerDebug {
+
 
     public static void main(String[] args) {
         Grid.setGridPath("scenarios\\1.txt");
@@ -21,6 +19,7 @@ public class AttackerDebug {
         player2.getHero().setSymbol('H');
 
         City city = new City(2, 2, player);
+        player.setCity(city);
         Grid.getInstance().tileFromPosition(2,2).setTileContent(city);
 
         Mercenary m1 = new Mercenary(1, 2, player2);
@@ -32,7 +31,57 @@ public class AttackerDebug {
 
         Grid.getInstance().displayGrid();
 
-        new Thread(() -> {
+        m1.startAttackingAdjacentEnemy(new ITaskFinishedCallback() {
+            @Override
+            public void onFinish()
+            {
+                city.startRepair(new ITaskFinishedCallback() {
+                    @Override
+                    public void onFinish() {
+
+                    }
+
+                    @Override
+                    public void onFail() {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
+
+        m2.startAttackingAdjacentEnemy(new ITaskFinishedCallback() {
+            @Override
+            public void onFinish()
+            {
+                System.out.println("m2 finished attacking");
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
+
+        m3.startAttackingAdjacentEnemy(new ITaskFinishedCallback() {
+            @Override
+            public void onFinish()
+            {
+                System.out.println("m3 finished attacking");
+                Grid.getInstance().displayGrid();
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
+
+        /*new Thread(() -> {
 
             int counter = 0;
             var attackables = m1.getAdjacentAttackers();
@@ -92,7 +141,7 @@ public class AttackerDebug {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }).start();*/
         //player.start();
         //player2.start();
     }

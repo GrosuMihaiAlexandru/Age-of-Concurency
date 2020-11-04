@@ -3,7 +3,7 @@ package com.upt;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class City implements  ITileContent, IInteractable, IAttacker
+public class City implements  ITileContent, IAttacker
 {
     private Player player;
 
@@ -17,7 +17,7 @@ public class City implements  ITileContent, IInteractable, IAttacker
 
     private final int baseAttack = 50;
 
-    private int cityLevel;
+    private int cityLevel = 1;
 
     private int foodUpgradeCost;
     private int woodUpgradeCost;
@@ -38,6 +38,8 @@ public class City implements  ITileContent, IInteractable, IAttacker
 
     private volatile boolean hasStartedAttacking = false;
 
+    private boolean isRepairing = false;
+
     public City (int x, int y, Player player)
     {
         this.posX = x;
@@ -49,47 +51,36 @@ public class City implements  ITileContent, IInteractable, IAttacker
     }
 
     // repararea dureaza pana cand orasul e complet reparat sau playerul ramane fara resursele necesare
-    private void repair()
+    public void startRepair(ITaskFinishedCallback callback)
     {
-         new Thread(() ->
-         {
-             int wood = player.getResource(Resource.ResourceType.wood);
-             int stone = player.getResource(Resource.ResourceType.stone);
+        if (!isRepairing) {
+            isRepairing = true;
+            new Thread(() ->
+            {
+                int wood = player.getResource(Resource.ResourceType.wood);
+                int stone = player.getResource(Resource.ResourceType.stone);
 
-             while (currentHealth.get() < maxHealth && wood >= woodRepairPercentageCost * cityLevel && stone >= stoneRepairPercentageCost  * cityLevel)
-             {
-                 player.addResource(Resource.ResourceType.wood, -woodRepairPercentageCost);
-                 player.addResource(Resource.ResourceType.stone, -stoneRepairPercentageCost);
+                while (currentHealth.get() < maxHealth && wood >= woodRepairPercentageCost * cityLevel && stone >= stoneRepairPercentageCost * cityLevel)
+                {
+                    player.addResource(Resource.ResourceType.wood, -woodRepairPercentageCost * cityLevel);
+                    player.addResource(Resource.ResourceType.stone, -stoneRepairPercentageCost * cityLevel);
 
-                 // probleme de concurenta
-                 currentHealth.getAndAdd(maxHealth / 100);
+                    // probleme de concurenta
+                    currentHealth.getAndAdd(maxHealth / 100);
 
-                 wood = player.getResource(Resource.ResourceType.wood);
-                 stone = player.getResource(Resource.ResourceType.stone);
-                 try {
-                     Thread.sleep(1000);
-                 } catch (InterruptedException e) {
-                     e.printStackTrace();
-                 }
-             }
-         }).start();
-    }
+                    wood = player.getResource(Resource.ResourceType.wood);
+                    stone = player.getResource(Resource.ResourceType.stone);
 
-    @Override
-    public void interact(Hero hero, ActionType actionType)
-    {
-        // Handle hero interactions
-        if (actionType == ActionType.repair)
-        {
-            repair();
-        }
-        else if (actionType == ActionType.upgrade)
-        {
-
-        }
-        else if (actionType == ActionType.train)
-        {
-
+                    System.out.println("Repaired city HP: " + currentHealth.get() + " Wood: " + wood + " Stone: " + stone);
+                    try {
+                        Thread.sleep(250);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                isRepairing = false;
+                callback.onFinish();
+            }).start();
         }
     }
 
@@ -119,40 +110,51 @@ public class City implements  ITileContent, IInteractable, IAttacker
     public void takeDamage(int damage)
     {
         // probleme de concurenta
-        if (currentHealth.get() > 0) {
-            currentHealth.getAndAdd(-damage);
+        currentHealth.getAndAdd(-damage);
 
-            System.out.println("City health left: " + currentHealth.get());
-            // attack the enemy back
-            if (!hasStartedAttacking)
+        if (currentHealth.get() <= 0)
+        {
+            onDeath();
+            return;
+        }
+
+        System.out.println("City health left: " + currentHealth.get());
+        // attack the enemy back
+        if (!hasStartedAttacking)
+        {
+            synchronized (this)
             {
-                synchronized (this)
+                if (!hasStartedAttacking)
                 {
-                    if (!hasStartedAttacking)
+                    hasStartedAttacking = true;
+
+                    new Thread(() ->
                     {
-                        hasStartedAttacking = true;
-
-                        new Thread(() ->
+                        var attackers = getAdjacentAttackers();
+                        while (attackers.size() > 0 && isAlive())
                         {
-                            var attackers = getAdjacentAttackers();
-                            while (attackers.size() > 0)
-                            {
-                                System.out.println(" City attack " + attackers.get(0));
-                                attack(attackers.get(0));
+                            System.out.println(" City attack " + attackers.get(0));
+                            attack(attackers.get(0));
 
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                attackers = getAdjacentAttackers();
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
-                            hasStartedAttacking = false;
-                        }).start();
-                    }
+                            attackers = getAdjacentAttackers();
+                        }
+                        hasStartedAttacking = false;
+                    }).start();
                 }
             }
         }
+
+    }
+
+    private void onDeath()
+    {
+        Grid.getInstance().tileFromPosition(posX, posY).setTileContent(null);
+        Grid.getInstance().displayGrid();
     }
 
     public ArrayList<IAttacker> getAdjacentAttackers()
@@ -167,5 +169,10 @@ public class City implements  ITileContent, IInteractable, IAttacker
         }
 
         return attackers;
+    }
+
+    private boolean isAlive()
+    {
+        return currentHealth.get() > 0;
     }
 }

@@ -12,12 +12,20 @@ public class Player extends Thread {
 
     private ArrayList<Mercenary> mercenaries;
 
+    private City city;
+
+    private int trainMercenaryFoodCost = 50;
+    private int trainMercenaryGoldCost = 25;
+
     public Player(int heroPosX, int heroPosY, char heroSymbol)
     {
         hero = new Hero(heroPosX, heroPosY, this, heroSymbol);
         isAlive = true;
 
         mercenaries = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++)
+            resources[i] = 100;
     }
 
     public void run()
@@ -30,9 +38,44 @@ public class Player extends Thread {
         // System.out.print(this.getName() + " " + resourceType + " value: " + resources[resourceType.ordinal()] + "\n");
     }
 
+    public boolean trainMercenary()
+    {
+        var tiles = Grid.getInstance().getNeighbours(Grid.getInstance().tileFromPosition(city.getPosX(), city.getPosY()));
+
+        ArrayList<Tile> emptyTiles = new ArrayList<>();
+        for (Tile t : tiles)
+        {
+            if (t.getTileContent() == null)
+                emptyTiles.add(t);
+        }
+
+        if (emptyTiles.size() > 0)
+        {
+            if (getResource(Resource.ResourceType.food) >= trainMercenaryFoodCost && getResource(Resource.ResourceType.gold) >= trainMercenaryGoldCost)
+            {
+                addResource(Resource.ResourceType.food, -trainMercenaryFoodCost);
+                addResource(Resource.ResourceType.gold, -trainMercenaryGoldCost);
+
+                mercenaries.add(new Mercenary(emptyTiles.get(0).getPosX(), emptyTiles.get(0).getPosY(), this));
+
+                return true;
+            }
+            else
+            {
+                return  false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public Hero getHero() {
         return hero;
     }
+
+    public void setCity(City city) { this.city = city; }
 
     public int getResource(Resource.ResourceType resourceType)
     {
