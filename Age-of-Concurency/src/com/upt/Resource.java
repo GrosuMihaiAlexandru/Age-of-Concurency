@@ -11,17 +11,32 @@ public class Resource implements ITileContent, IInteractable
     private ResourceType resourceType;
     private int resourceValue;
 
-    public Resource (int posX, int posY, char resourceSymbol, int value) {
+    public Resource (int posX, int posY, char resourceSymbol) {
         this.posX = posX;
         this.posY = posY;
         this.resourceType = toResourceType(resourceSymbol);
-        this.resourceValue = value;
+
+        switch (resourceType)
+        {
+            case food:
+                this.resourceValue = 200;
+                break;
+            case wood:
+                this.resourceValue = 300;
+                break;
+            case gold:
+                this.resourceValue = 800;
+                break;
+            case stone:
+                this.resourceValue = 250;
+                break;
+        }
     }
 
     public synchronized void collectResource(Player player)
     {
         // probleme de concurenta
-        resourceValue --;
+        resourceValue -= 10;
 
         if (resourceValue <= 0)
         {
@@ -31,7 +46,7 @@ public class Resource implements ITileContent, IInteractable
         }
 
         System.out.print("resource left: " + resourceValue + "\n");
-        player.addResource(resourceType, 1);
+        player.addResource(resourceType, resourceValue >= 0 ? 10 : 10 + resourceValue);
     }
 
     private void onDeath()

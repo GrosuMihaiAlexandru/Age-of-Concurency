@@ -38,10 +38,15 @@ public class Hero extends Unit
 
                     if (interactables.size() > 0)
                     {
-                        System.out.print(getName() + " Collect resource");
-                        System.out.println();
-
                         interactables.get(0).interact(Hero.this, IInteractable.ActionType.gather);
+
+                        System.out.print(player.getPlayerColor() +
+                                "Food: " + player.getResource(Resource.ResourceType.food) +
+                                " Wood: " + player.getResource(Resource.ResourceType.wood) +
+                                " Gold: " + player.getResource(Resource.ResourceType.gold) +
+                                " Stone: " + player.getResource(Resource.ResourceType.stone)
+                                + Grid.ANSI_RESET);
+                        System.out.println();
                     }
                     else
                     {

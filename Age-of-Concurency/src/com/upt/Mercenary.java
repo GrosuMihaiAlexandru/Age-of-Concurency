@@ -85,7 +85,7 @@ public class Mercenary extends Unit implements IAttacker {
 
     // in caz ca se bat mercenarii intre ei metoda este synchronized
     @Override
-    public void takeDamage(int damage)
+    public synchronized void takeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)

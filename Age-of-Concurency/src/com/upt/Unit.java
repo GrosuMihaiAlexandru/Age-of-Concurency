@@ -93,6 +93,8 @@ public abstract class Unit implements ITileContent
         }
         Collections.reverse(path);
 
+        printMap();
+
         return path;
     }
 
@@ -135,10 +137,10 @@ public abstract class Unit implements ITileContent
     public void printMap() {
         for (int i = 0; i < Grid.getInstance().getHeight(); i++) {
             for (int j = 0; j < Grid.getInstance().getWidth(); j++) {
-                if (map[i][j] != null)
+                if (map[j][i] != null)
                 {
-                    if (map[i][j].distance < 10)
-                        System.out.print(map[i][j].distance);
+                    if (map[j][i].distance < 10)
+                        System.out.print(map[j][i].distance);
                     else
                         System.out.print("x");
                 }
@@ -147,6 +149,10 @@ public abstract class Unit implements ITileContent
             }
             System.out.println();
         }
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
     }
 
     public class PathfindingTile
