@@ -12,7 +12,7 @@ public class PathfindingDebug {
         // check whole path
         // do concurrency
 
-        Hero hero1 = new Hero(1,1, null, '1');
+        /*Hero hero1 = new Hero(1,1, null, '1');
         Grid.getInstance().tileFromPosition(1, 1).setTileContent(hero1);
         int dest1X = 3, dest1Y = 2;
         hero1.moveToDestination(dest1X, dest1Y, new ITaskFinishedCallback() {
@@ -60,7 +60,7 @@ public class PathfindingDebug {
                 }
             }
         }.start();
-
+*/
         return;
     }
 }

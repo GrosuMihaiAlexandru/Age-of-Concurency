@@ -50,9 +50,9 @@ public class Tile {
         return tileContent.toString();
     }
 
-    public char getSymbol() {
+    public String getSymbol() {
         if (tileContent == null)
-            return '.';
+            return ".";
         else
             return tileContent.getSymbol();
     }

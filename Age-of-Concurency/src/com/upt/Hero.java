@@ -4,15 +4,10 @@ import java.util.ArrayList;
 
 public class Hero extends Unit
 {
-    private char symbol;
 
-    public Hero(int x, int y, Player player) {
+    public Hero(int x, int y, Player player)
+    {
         super(x, y, player);
-    }
-
-    public Hero(int x, int y, Player player, char symbol) {
-        super(x, y, player);
-        this.symbol = symbol;
     }
 
     private ArrayList<IInteractable> getAdjacentResouces()
@@ -68,9 +63,9 @@ public class Hero extends Unit
         }.start();
     }
 
-    public void setSymbol(char symbol) { this.symbol = symbol; }
-    public char getSymbol() {
-        return symbol;
+    @Override
+    public String getSymbol()
+    {
+        return player.getPlayerColor() + "H" + Grid.ANSI_RESET;
     }
-
 }

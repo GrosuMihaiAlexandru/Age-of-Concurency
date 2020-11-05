@@ -35,8 +35,8 @@ public class Mercenary extends Unit implements IAttacker {
         return attackers;
     }
 
-    public char getSymbol() {
-        return 'M';
+    public String getSymbol() {
+        return player.getPlayerColor() + "M" + Grid.ANSI_RESET;
     }
 
     public void startAttackingAdjacentEnemy(ITaskFinishedCallback callback)

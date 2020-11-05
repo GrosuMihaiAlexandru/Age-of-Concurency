@@ -51,8 +51,8 @@ public class Resource implements ITileContent, IInteractable
     }
 
     @Override
-    public char getSymbol() {
-        return toCharacter(resourceType);
+    public String getSymbol() {
+        return toCharacter(resourceType) + "";
     }
 
     @Override

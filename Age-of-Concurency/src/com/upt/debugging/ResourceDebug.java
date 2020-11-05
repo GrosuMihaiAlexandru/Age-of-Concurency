@@ -11,10 +11,10 @@ public class ResourceDebug {
         Grid.getInstance().displayGrid();
         System.out.println();
 
-        Player player = new Player(2, 2, '1');
+        Player player = new Player(2, 2, Grid.ANSI_BLUE);
         Grid.getInstance().tileFromPosition(2 , 2).setTileContent(player.getHero());
 
-        Player player2 = new Player(3, 1, '2');
+        Player player2 = new Player(3, 1, Grid.ANSI_RED);
         Grid.getInstance().tileFromPosition(3 , 1).setTileContent(player2.getHero());
 
         Grid.getInstance().displayGrid();

@@ -85,9 +85,9 @@ public class City implements  ITileContent, IAttacker
     }
 
     @Override
-    public char getSymbol()
+    public String getSymbol()
     {
-        return 'C';
+        return player.getPlayerColor() + "C" + Grid.ANSI_RESET;
     }
 
     @Override

@@ -49,8 +49,9 @@ public class Unpassable implements ITileContent{
     }
 
     @Override
-    public char getSymbol() {
-        return toCharacter(unpassableType); }
+    public String getSymbol() {
+        return toCharacter(unpassableType) + "";
+    }
 
     @Override
     public int getPosX() {

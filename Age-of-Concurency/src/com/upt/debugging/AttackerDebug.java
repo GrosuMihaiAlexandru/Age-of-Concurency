@@ -10,13 +10,11 @@ public class AttackerDebug {
         Grid.getInstance().displayGrid();
         System.out.println();
 
-        Player player = new Player(3, 3, '1');
-        player.getHero().setSymbol('H');
+        Player player = new Player(3, 3, Grid.ANSI_BLUE);
         Grid.getInstance().tileFromPosition(3 , 3).setTileContent(player.getHero());
 
-        Player player2 = new Player(4, 3, '2');
+        Player player2 = new Player(4, 3, Grid.ANSI_RED);
         Grid.getInstance().tileFromPosition(4 , 3).setTileContent(player2.getHero());
-        player2.getHero().setSymbol('H');
 
         City city = new City(2, 2, player);
         player.setCity(city);
@@ -31,7 +29,13 @@ public class AttackerDebug {
 
         Grid.getInstance().displayGrid();
 
-        m1.startAttackingAdjacentEnemy(new ITaskFinishedCallback() {
+        player.trainMercenary();
+
+        Grid.getInstance().displayGrid();
+
+        System.out.println(player.trainMercenary());
+
+        /*m1.startAttackingAdjacentEnemy(new ITaskFinishedCallback() {
             @Override
             public void onFinish()
             {
@@ -79,7 +83,7 @@ public class AttackerDebug {
             public void onFail() {
 
             }
-        });
+        });*/
 
         /*new Thread(() -> {
 

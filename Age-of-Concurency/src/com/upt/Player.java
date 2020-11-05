@@ -14,13 +14,17 @@ public class Player extends Thread {
 
     private City city;
 
+    private String playerColor;
+
     private int trainMercenaryFoodCost = 50;
     private int trainMercenaryGoldCost = 25;
 
-    public Player(int heroPosX, int heroPosY, char heroSymbol)
+    public Player(int heroPosX, int heroPosY, String playerColor)
     {
-        hero = new Hero(heroPosX, heroPosY, this, heroSymbol);
+        hero = new Hero(heroPosX, heroPosY, this);
         isAlive = true;
+
+        this.playerColor = playerColor;
 
         mercenaries = new ArrayList<>();
 
@@ -56,7 +60,9 @@ public class Player extends Thread {
                 addResource(Resource.ResourceType.food, -trainMercenaryFoodCost);
                 addResource(Resource.ResourceType.gold, -trainMercenaryGoldCost);
 
-                mercenaries.add(new Mercenary(emptyTiles.get(0).getPosX(), emptyTiles.get(0).getPosY(), this));
+                Mercenary newMercenary = new Mercenary(emptyTiles.get(0).getPosX(), emptyTiles.get(0).getPosY(), this);
+                emptyTiles.get(0).setTileContent(newMercenary);
+                mercenaries.add(newMercenary);
 
                 return true;
             }
@@ -82,4 +88,5 @@ public class Player extends Thread {
         return resources[resourceType.ordinal()];
     }
 
+    public String getPlayerColor() { return playerColor; }
 }
