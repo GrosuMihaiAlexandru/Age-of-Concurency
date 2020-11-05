@@ -44,14 +44,14 @@ public class Mercenary extends Unit implements IAttacker {
         stopAttacking = false;
         new Thread(() -> {
 
-            int counter = 0;
+            int counter = 1;
             while (isAlive() && !stopAttacking)
             {
                 var attackables = getAdjacentAttackers();
 
                 if (attackables.size() > 0)
                 {
-                    System.out.println("m" + no + " HP: " + getHealth() + " attack no: " + counter);
+                    System.out.println(player.getPlayerColor() + "m" + no + " HP: " + getHealth() + " attack no: " + counter + Grid.ANSI_RESET);
                     counter++;
                     attack(attackables.get(0));
                 }

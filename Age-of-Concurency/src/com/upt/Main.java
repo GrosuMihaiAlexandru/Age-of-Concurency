@@ -6,8 +6,9 @@ public class Main
 {
     public static void main(String args[])
     {
-        String testCase = "SimpleMove";
-
+        // String testCase = "SimpleResource";
+        // String testCase = "SimpleMove";
+        String testCase = "SimpleCityAttack";
 
         switch (testCase) {
             case "SimpleResource":
@@ -15,6 +16,9 @@ public class Main
                 break;
             case "SimpleMove":
                 case2();
+                break;
+            case "SimpleCityAttack":
+                case3();
                 break;
             default:
                 System.out.println("Unrecognized case. Goodbye!");
@@ -43,12 +47,7 @@ public class Main
         player2.start();
         player3.start();
 
-        ArrayList<Thread> players = new ArrayList<Thread>();
-        players.add(player1);
-        players.add(player2);
-        players.add(player3);
-
-        startMapPrintingThread(players);
+        startMapPrintingThread();
     }
 
     private static void case2()
@@ -75,18 +74,38 @@ public class Main
         player5.start();
         player6.start();
 
-        ArrayList<Thread> players = new ArrayList<Thread>();
-        players.add(player1);
-        players.add(player2);
-        players.add(player3);
-        players.add(player4);
-        players.add(player5);
-        players.add(player6);
-
-        startMapPrintingThread(players);
+        startMapPrintingThread();
     }
 
-    private static void startMapPrintingThread(ArrayList<Thread> playerThreads)
+    private static void case3()
+    {
+        Grid.setGridPath("scenarios\\mercenaryAttack.txt");
+        Player player1 = new Player(1, 1, Grid.ANSI_CYAN);
+        Player player2 = new Player(20, 9, Grid.ANSI_RED);
+
+        City city1 = new City(4, 2, player1);
+        City city2 = new City(18, 8, player2);
+        player1.setCity(city1);
+        player2.setCity(city2);
+
+        player1.addResource(Resource.ResourceType.gold, 1000);
+        player1.addResource(Resource.ResourceType.food, 1000);
+
+        player2.addResource(Resource.ResourceType.gold, 1000);
+        player2.addResource(Resource.ResourceType.food, 1000);
+
+        player1.addCommand(new Command("sendMercenary", 17, 8, 0, Resource.ResourceType.food));
+        player1.addCommand(new Command("sendMercenary", 19, 8, 0, Resource.ResourceType.food));
+        player1.addCommand(new Command("sendMercenary", 18, 7, 0, Resource.ResourceType.food));
+        player2.addCommand(new Command("sendMercenary", 2, 2, 0, Resource.ResourceType.food));
+
+        player1.start();
+        player2.start();
+
+        startMapPrintingThread();
+    }
+
+    private static void startMapPrintingThread()
     {
         new Thread() {
             public void run() {
@@ -95,9 +114,7 @@ public class Main
                 } catch (Exception e) {
                 }
 
-                boolean playersAlive = true;
-
-                while (playersAlive) {
+                while (true) {
                     System.out.println();
                     Grid.getInstance().displayGrid();
 
@@ -105,11 +122,6 @@ public class Main
                         sleep(500);
                     } catch (Exception e) {
                     }
-
-                    playersAlive = false;
-                    for(Thread t : playerThreads)
-                        if (t.isAlive())
-                            playersAlive = true;
                 }
             }
         }.start();

@@ -12,8 +12,6 @@ public class Player extends Thread implements ITaskFinishedCallback {
 
     private Hero hero;
 
-    private ArrayList<Mercenary> mercenaries;
-
     private City city;
 
     private String playerColor;
@@ -30,8 +28,6 @@ public class Player extends Thread implements ITaskFinishedCallback {
         isAlive = true;
 
         this.playerColor = playerColor;
-
-        mercenaries = new ArrayList<>();
 
         for (int i = 0; i < 4; i++)
             resources[i] = 100;
@@ -66,8 +62,37 @@ public class Player extends Thread implements ITaskFinishedCallback {
                     } catch (Exception e) {}
                     break;
 
-                case "train":
-                    break;
+                case "sendMercenary":
+                    Mercenary merc = trainMercenary();
+                    if (merc != null)
+                    {
+                        merc.moveToDestination(command.x, command.y, new ITaskFinishedCallback() {
+                            @Override
+                            public void onFinish() {
+                                merc.startAttackingAdjacentEnemy(new ITaskFinishedCallback() {
+                                    @Override
+                                    public void onFinish() {
+
+                                    }
+
+                                    @Override
+                                    public void onFail() {
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onFail() {
+                                // merc died before city was destroyed.
+                            }
+                        });
+                        break;
+                    }
+                    else
+                    {
+                        System.out.println("No mercenary created");
+                    }
 
                 default:
                     System.out.println("Unrecognized command will be ignored.");
@@ -87,7 +112,7 @@ public class Player extends Thread implements ITaskFinishedCallback {
         // System.out.print(this.getName() + " " + resourceType + " value: " + resources[resourceType.ordinal()] + "\n");
     }
 
-    public boolean trainMercenary()
+    public Mercenary trainMercenary()
     {
         var tiles = Grid.getInstance().getNeighbours(Grid.getInstance().tileFromPosition(city.getPosX(), city.getPosY()));
 
@@ -106,19 +131,18 @@ public class Player extends Thread implements ITaskFinishedCallback {
                 addResource(Resource.ResourceType.gold, -trainMercenaryGoldCost);
 
                 Mercenary newMercenary = new Mercenary(emptyTiles.get(0).getPosX(), emptyTiles.get(0).getPosY(), this);
-                emptyTiles.get(0).setTileContent(newMercenary);
-                mercenaries.add(newMercenary);
+                // emptyTiles.get(0).setTileContent(newMercenary);
 
-                return true;
+                return newMercenary;
             }
             else
             {
-                return  false;
+                return  null;
             }
         }
         else
         {
-            return false;
+            return null;
         }
     }
 

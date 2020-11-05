@@ -48,6 +48,8 @@ public class City implements  ITileContent, IAttacker
         maxHealth = 1000;
         currentHealth = new AtomicInteger(maxHealth);
         attack = baseAttack;
+
+        Grid.getInstance().tileFromPosition(x, y).setTileContent(this);
     }
 
     // repararea dureaza pana cand orasul e complet reparat sau playerul ramane fara resursele necesare
@@ -71,7 +73,7 @@ public class City implements  ITileContent, IAttacker
                     wood = player.getResource(Resource.ResourceType.wood);
                     stone = player.getResource(Resource.ResourceType.stone);
 
-                    System.out.println("Repaired city HP: " + currentHealth.get() + " Wood: " + wood + " Stone: " + stone);
+                    System.out.println(player.getPlayerColor() + "Repaired city HP: " + currentHealth.get() + " Wood: " + wood + " Stone: " + stone + Grid.ANSI_RESET);
                     try {
                         Thread.sleep(250);
                     } catch (InterruptedException e) {
@@ -118,7 +120,7 @@ public class City implements  ITileContent, IAttacker
             return;
         }
 
-        System.out.println("City health left: " + currentHealth.get());
+        System.out.println(player.getPlayerColor() + "City health left: " + currentHealth.get() + Grid.ANSI_RESET);
         // attack the enemy back
         if (!hasStartedAttacking)
         {
@@ -133,7 +135,7 @@ public class City implements  ITileContent, IAttacker
                         var attackers = getAdjacentAttackers();
                         while (attackers.size() > 0 && isAlive())
                         {
-                            System.out.println(" City attack " + attackers.get(0));
+                            System.out.println(player.getPlayerColor() + " City attack " + attackers.get(0) + Grid.ANSI_RESET);
                             attack(attackers.get(0));
 
                             try {
