@@ -169,6 +169,6 @@ public class Player extends Thread implements ITaskFinishedCallback {
     @Override
     public synchronized void onFail() {
         // System.out.println("onFail");
-        notify();
+        this.notify();
     }
 }

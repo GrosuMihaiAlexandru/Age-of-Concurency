@@ -97,7 +97,50 @@ public class Main
         player1.addCommand(new Command("sendMercenary", 17, 8, 0, Resource.ResourceType.food));
         player1.addCommand(new Command("sendMercenary", 19, 8, 0, Resource.ResourceType.food));
         player1.addCommand(new Command("sendMercenary", 18, 7, 0, Resource.ResourceType.food));
-        // player2.addCommand(new Command("sendMercenary", 3, 2, 0, Resource.ResourceType.food));
+        //player2.addCommand(new Command("sendMercenary", 3, 2, 0, Resource.ResourceType.food));
+
+        player1.start();
+        player2.start();
+
+        startMapPrintingThread();
+    }
+
+    private static void case4()
+    {
+        Grid.setGridPath("scenarios\\finalTest.txt");
+        Player player1 = new Player(4, 2, Grid.ANSI_CYAN);
+        Player player2 = new Player(52, 2, Grid.ANSI_RED);
+        Player player3 = new Player(30, 12, Grid.ANSI_GREEN);
+
+
+        City city1 = new City(4, 2, player1);
+        City city2 = new City(52, 2, player2);
+        City city3 = new City(30, 12, player3);
+
+        player1.setCity(city1);
+        player2.setCity(city2);
+        player3.setCity(city3);
+
+        player1.addResource(Resource.ResourceType.gold, 100);
+        player1.addResource(Resource.ResourceType.food, 100);
+        player1.addResource(Resource.ResourceType.stone, 100);
+        player1.addResource(Resource.ResourceType.wood, 100);
+
+        player2.addResource(Resource.ResourceType.gold, 100);
+        player2.addResource(Resource.ResourceType.food, 100);
+        player2.addResource(Resource.ResourceType.stone, 100);
+        player2.addResource(Resource.ResourceType.wood, 100);
+
+        player3.addResource(Resource.ResourceType.gold, 100);
+        player3.addResource(Resource.ResourceType.food, 100);
+        player3.addResource(Resource.ResourceType.stone, 100);
+        player3.addResource(Resource.ResourceType.wood, 100);
+
+        player1.addCommand(new Command("sendMercenary", 17, 8, 0, Resource.ResourceType.food));
+        player1.addCommand(new Command("sendMercenary", 19, 8, 0, Resource.ResourceType.food));
+        player1.addCommand(new Command("sendMercenary", 18, 7, 0, Resource.ResourceType.food));
+
+        //player2.addCommand(new Command("sendMercenary", 3, 2, 0, Resource.ResourceType.food));
 
         player1.start();
         player2.start();
