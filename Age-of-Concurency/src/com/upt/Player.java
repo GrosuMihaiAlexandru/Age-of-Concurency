@@ -107,7 +107,7 @@ public class Player extends Thread implements ITaskFinishedCallback {
         commandsQueue.add(command);
     }
 
-    public void addResource(Resource.ResourceType resourceType, int value)
+    public synchronized void addResource(Resource.ResourceType resourceType, int value)
     {
         resources[resourceType.ordinal()] += value;
         // System.out.print(this.getName() + " " + resourceType + " value: " + resources[resourceType.ordinal()] + "\n");
@@ -130,6 +130,8 @@ public class Player extends Thread implements ITaskFinishedCallback {
             {
                 addResource(Resource.ResourceType.food, -trainMercenaryFoodCost);
                 addResource(Resource.ResourceType.gold, -trainMercenaryGoldCost);
+
+                System.out.println(playerColor + "Mercenary spawned. Food: " + getResource(Resource.ResourceType.food) + " Gold: " + getResource(Resource.ResourceType.gold) + Grid.ANSI_RESET);
 
                 Mercenary newMercenary = new Mercenary(emptyTiles.get(0).getPosX(), emptyTiles.get(0).getPosY(), this);
                 // emptyTiles.get(0).setTileContent(newMercenary);
@@ -162,13 +164,13 @@ public class Player extends Thread implements ITaskFinishedCallback {
 
     @Override
     public synchronized void onFinish() {
-        // System.out.println("onFinish");
+        System.out.println("onFinish");
         this.notify();
     }
 
     @Override
     public synchronized void onFail() {
-        // System.out.println("onFail");
+        System.out.println("onFail");
         this.notify();
     }
 }

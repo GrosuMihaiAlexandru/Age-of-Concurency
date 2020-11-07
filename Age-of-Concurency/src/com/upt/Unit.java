@@ -74,6 +74,7 @@ public abstract class Unit implements ITileContent
                 }
             }
         }
+        // printMap();
     }
 
     private ArrayList<PathfindingTile> getPathToDestination(int destX, int destY)
@@ -93,7 +94,7 @@ public abstract class Unit implements ITileContent
         }
         Collections.reverse(path);
 
-        printMap();
+        // printMap();
 
         return path;
     }
@@ -101,7 +102,7 @@ public abstract class Unit implements ITileContent
     public void moveToDestination(int dest1X, int dest1Y, ITaskFinishedCallback callback) {
         new Thread() {
             public void run() {
-                while (getPosX() != dest1X && getPosY() != dest1Y) {
+                while (getPosX() != dest1X || getPosY() != dest1Y) {
                     createLeeMatrix();
 
                     if (map[dest1X][dest1Y] == null) {

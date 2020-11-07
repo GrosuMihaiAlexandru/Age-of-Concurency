@@ -38,9 +38,10 @@ public class Resource implements ITileContent, IInteractable
         // probleme de concurenta
         resourceValue -= 10;
 
-        if (resourceValue <= 0)
+        if (resourceValue < 0)
         {
-            System.out.println("Resource value on death: " + resourceValue);
+            System.out.println("Resource death");
+            // System.out.println("Resource value on death: " + resourceValue);
             onDeath();
             return;
         }
