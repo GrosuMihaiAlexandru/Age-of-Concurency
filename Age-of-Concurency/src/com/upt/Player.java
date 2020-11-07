@@ -64,6 +64,7 @@ public class Player extends Thread implements ITaskFinishedCallback {
 
                 case "sendMercenary":
                     Mercenary merc = trainMercenary();
+                    System.out.println(playerColor + "m" + merc.getNo() + " HP: " + merc.getHealth() + Grid.ANSI_RESET);
                     if (merc != null)
                     {
                         merc.moveToDestination(command.x, command.y, new ITaskFinishedCallback() {

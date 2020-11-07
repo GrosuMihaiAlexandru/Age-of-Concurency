@@ -10,10 +10,16 @@ public class City implements  ITileContent, IAttacker
     private int posX;
     private int posY;
 
+    public AtomicInteger getCurrentHealth() {
+        return currentHealth;
+    }
+
     private AtomicInteger currentHealth;
     private int maxHealth;
 
     private int attack;
+
+    private int attackNo;
 
     private final int baseAttack = 50;
 
@@ -129,14 +135,16 @@ public class City implements  ITileContent, IAttacker
                 if (!hasStartedAttacking)
                 {
                     hasStartedAttacking = true;
+                    attackNo = 0;
 
                     new Thread(() ->
                     {
                         var attackers = getAdjacentAttackers();
                         while (attackers.size() > 0 && isAlive())
                         {
-                            System.out.println(player.getPlayerColor() + " City attack " + attackers.get(0) + Grid.ANSI_RESET);
                             attack(attackers.get(0));
+                            attackNo++;
+                            System.out.println(player.getPlayerColor() + " City attack no " + attackNo + ": " + ((Mercenary)attackers.get(0)).player.getPlayerColor() + "m" + ((Mercenary)attackers.get(0)).getNo() + " HP left: " + ((Mercenary)attackers.get(0)).getHealth() + Grid.ANSI_RESET);
 
                             try {
                                 Thread.sleep(1000);
@@ -151,6 +159,11 @@ public class City implements  ITileContent, IAttacker
             }
         }
 
+    }
+
+    @Override
+    public Player getPlayer() {
+        return player;
     }
 
     private void onDeath()

@@ -9,6 +9,10 @@ public class Mercenary extends Unit implements IAttacker {
 
     private boolean stopAttacking = false;
 
+    public int getNo() {
+        return no;
+    }
+
     private int no;
     private static int allMercenaries = 0;
 
@@ -28,7 +32,7 @@ public class Mercenary extends Unit implements IAttacker {
 
         for (Tile t : neighbours)
         {
-            if (t.getTileContent() instanceof IAttacker)
+            if (t.getTileContent() instanceof IAttacker && ((IAttacker)t.getTileContent()).getPlayer() != player)
                 attackers.add((IAttacker) t.getTileContent());
         }
 
@@ -51,10 +55,9 @@ public class Mercenary extends Unit implements IAttacker {
 
                 if (attackables.size() > 0)
                 {
-                    System.out.println(player.getPlayerColor() + "m" + no + " HP: " + getHealth() + " attack no: " + counter + Grid.ANSI_RESET);
                     counter++;
                     attack(attackables.get(0));
-                }
+                    System.out.println(player.getPlayerColor() + "m" + no + " attack no: " + counter + ": " + ((City)attackables.get(0)).getPlayer().getPlayerColor() + " City HP left: " + ((City)attackables.get(0)).getCurrentHealth() + Grid.ANSI_RESET);}
                 else
                 {
                     // Dc orasul o fost distrus

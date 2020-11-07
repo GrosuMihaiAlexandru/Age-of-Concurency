@@ -97,7 +97,7 @@ public class Main
         player1.addCommand(new Command("sendMercenary", 17, 8, 0, Resource.ResourceType.food));
         player1.addCommand(new Command("sendMercenary", 19, 8, 0, Resource.ResourceType.food));
         player1.addCommand(new Command("sendMercenary", 18, 7, 0, Resource.ResourceType.food));
-        player2.addCommand(new Command("sendMercenary", 2, 2, 0, Resource.ResourceType.food));
+        // player2.addCommand(new Command("sendMercenary", 3, 2, 0, Resource.ResourceType.food));
 
         player1.start();
         player2.start();
@@ -119,7 +119,7 @@ public class Main
                     Grid.getInstance().displayGrid();
 
                     try {
-                        sleep(500);
+                        sleep(1000);
                     } catch (Exception e) {
                     }
                 }
