@@ -2,6 +2,7 @@ package com.upt;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class Player extends Thread implements ITaskFinishedCallback {
@@ -19,7 +20,7 @@ public class Player extends Thread implements ITaskFinishedCallback {
     private int trainMercenaryFoodCost = 50;
     private int trainMercenaryGoldCost = 25;
 
-    private ArrayDeque<Command> commandsQueue = new ArrayDeque<Command>();
+    private LinkedList<Command> commandsQueue = new LinkedList<Command>();
 
     public Player(int heroPosX, int heroPosY, String playerColor)
     {
@@ -38,6 +39,7 @@ public class Player extends Thread implements ITaskFinishedCallback {
         while(!commandsQueue.isEmpty())
         {
             Command command = commandsQueue.poll();
+            System.out.println(command.commandStr);
 
             switch (command.commandStr)
             {
@@ -63,6 +65,7 @@ public class Player extends Thread implements ITaskFinishedCallback {
                     break;
 
                 case "sendMercenary":
+
                     Mercenary merc = trainMercenary();
                     System.out.println(playerColor + "m" + merc.getNo() + " HP: " + merc.getHealth() + Grid.ANSI_RESET);
                     if (merc != null)
@@ -126,6 +129,7 @@ public class Player extends Thread implements ITaskFinishedCallback {
 
         if (emptyTiles.size() > 0)
         {
+            System.out.println("EmptyTiles:" + emptyTiles.size());
             if (getResource(Resource.ResourceType.food) >= trainMercenaryFoodCost && getResource(Resource.ResourceType.gold) >= trainMercenaryGoldCost)
             {
                 addResource(Resource.ResourceType.food, -trainMercenaryFoodCost);
@@ -134,12 +138,13 @@ public class Player extends Thread implements ITaskFinishedCallback {
                 System.out.println(playerColor + "Mercenary spawned. Food: " + getResource(Resource.ResourceType.food) + " Gold: " + getResource(Resource.ResourceType.gold) + Grid.ANSI_RESET);
 
                 Mercenary newMercenary = new Mercenary(emptyTiles.get(0).getPosX(), emptyTiles.get(0).getPosY(), this);
-                // emptyTiles.get(0).setTileContent(newMercenary);
+                emptyTiles.get(0).setTileContent(newMercenary);
 
                 return newMercenary;
             }
             else
             {
+                System.out.println("Not enough resources to train merc!" );
                 return  null;
             }
         }

@@ -29,6 +29,12 @@ public class Main
             case "FinalTest":
                 case4();
                 break;
+            case "Move2":
+                case5();
+                break;
+            case "MercenarySpawn":
+                case6();
+                break;
             default:
                 System.out.println("Unrecognized case. Goodbye!");
         }
@@ -36,7 +42,7 @@ public class Main
 
     private static void case1()
     {
-        Grid.setGridPath("scenarios\\resourceCollect.txt");
+        Grid.setGridPath("scenarios\\resourceCollect02.txt");
         Player player1 = new Player(1, 1, Grid.ANSI_CYAN);
         Player player2 = new Player(8, 1, Grid.ANSI_GREEN);
         Player player3 = new Player(7, 6, Grid.ANSI_RED);
@@ -60,7 +66,7 @@ public class Main
 
     private static void case2()
     {
-        Grid.setGridPath("scenarios\\pathfindingAvoidance.txt");
+        Grid.setGridPath("scenarios\\pathfindingAvoidance01.txt");
         Player player1 = new Player(1, 1, Grid.ANSI_CYAN);
         Player player2 = new Player(1, 4, Grid.ANSI_GREEN);
         Player player3 = new Player(2, 8, Grid.ANSI_RED);
@@ -159,6 +165,43 @@ public class Main
         cyan.start();
         red.start();
         green.start();
+
+        startMapPrintingThread();
+    }
+
+    private static void case5() {
+        Grid.setGridPath("scenarios\\pathfindingAvoidance02.txt");
+
+        Player red = new Player(1, 1, Grid.ANSI_RED);
+        Player green = new Player(6, 2, Grid.ANSI_GREEN);
+
+        red.addCommand(new Command("move", 16, 1));
+        green.addCommand(new Command("move", 8, 1));
+
+        red.start();
+        green.start();
+
+        startMapPrintingThread();
+    }
+
+    private static void case6() {
+        Grid.setGridPath("scenarios\\pathfindingAvoidance02.txt");
+
+        Player red = new Player(8, 3, Grid.ANSI_RED);
+        red.addResource(Resource.ResourceType.food, 200);
+        red.addResource(Resource.ResourceType.gold, 200);
+
+        City c = new City(2, 2, red);
+        red.setCity(c);
+
+
+        red.addCommand(new Command("sendMercenary", 13, 3));
+        red.addCommand(new Command("sendMercenary", 13, 3));
+        red.addCommand(new Command("sendMercenary", 13, 3));
+        red.addCommand(new Command("sendMercenary", 13, 3));
+
+
+        red.start();
 
         startMapPrintingThread();
     }

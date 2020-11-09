@@ -59,6 +59,8 @@ public class City implements  ITileContent, IAttacker
     }
 
     // repararea dureaza pana cand orasul e complet reparat sau playerul ramane fara resursele necesare
+    // poti da repair in timp ce e atacat
+    // TODO: da i repair
     public void startRepair(ITaskFinishedCallback callback)
     {
         if (!isRepairing) {

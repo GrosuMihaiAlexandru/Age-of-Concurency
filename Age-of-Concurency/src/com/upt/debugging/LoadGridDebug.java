@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class LoadGridDebug {
 
     public static void main(String[] args) throws FileNotFoundException {
-        Grid.setGridPath("scenarios\\1.txt");
+        Grid.setGridPath("scenarios\\default.txt");
         Grid.getInstance().displayGrid();
     }
 }

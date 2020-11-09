@@ -21,7 +21,7 @@ public class Mercenary extends Unit implements IAttacker {
 
         health = 200;
         attack = 50;
-        no = allMercenaries;
+        no = allMercenaries;    // shouldn't this be atomic?
         allMercenaries++;
     }
 

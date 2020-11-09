@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ResourceDebug {
 
     public static void main(String[] args) {
-        Grid.setGridPath("scenarios\\1.txt");
+        Grid.setGridPath("scenarios\\resourceCollect01.txt");
         Grid.getInstance().displayGrid();
         System.out.println();
 
