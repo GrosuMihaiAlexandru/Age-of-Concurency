@@ -94,6 +94,18 @@ public class Grid {
         }
     }
 
+    public City getFirstCityFound() {
+        for (int y = 0; y < this.height; y++)
+        {
+            for (int x = 0; x < this.width; x++)
+            {
+                if (tiles[x][y].getTileContent() instanceof City)
+                    return ((City) tiles[x][y].getTileContent());
+            }
+        }
+        return null;
+    }
+
     public boolean moveTileContent(int tilePosX, int tilePosY, int destX, int destY, ITileContent content)
     {
         Tile currentTile = tileFromPosition(tilePosX, tilePosY);

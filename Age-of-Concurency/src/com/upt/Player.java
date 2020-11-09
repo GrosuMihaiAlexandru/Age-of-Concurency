@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Player extends Thread implements ITaskFinishedCallback {
 
@@ -22,6 +23,12 @@ public class Player extends Thread implements ITaskFinishedCallback {
 
     private LinkedList<Command> commandsQueue = new LinkedList<Command>();
 
+    private static AtomicInteger players;
+
+    static {
+        players = new AtomicInteger();
+    }
+
     public Player(int heroPosX, int heroPosY, String playerColor)
     {
         hero = new Hero(heroPosX, heroPosY, this);
@@ -34,74 +41,95 @@ public class Player extends Thread implements ITaskFinishedCallback {
             resources[i] = 100;
     }
 
+    public static int getNoPlayers() {
+        return players.intValue();
+    }
+
     public synchronized void run()
     {
-        while(!commandsQueue.isEmpty())
-        {
-            Command command = commandsQueue.poll();
-            System.out.println(command.commandStr);
+        players.getAndIncrement();
 
-            switch (command.commandStr)
-            {
-                case "collect":
-                    System.out.println(playerColor + "Started collect!\n" + Grid.ANSI_RESET);
-                    hero.startCollectingResource(command.resourceType, command.amount, this);
-                    try {
-                        // System.out.println("Waiting\n");
-                        wait();
-                    } catch (Exception e) {}
-                    break;
+        while(isAlive) {
+            while (!commandsQueue.isEmpty() && isAlive) {
+                Command command = commandsQueue.poll();
+                System.out.println(command.commandStr);
 
-                case "move":
-                    System.out.println(playerColor + "Started move to " + command.x + ", " + command.y + "!\n" + Grid.ANSI_RESET);
-                    hero.moveToDestination(command.x, command.y, this);
-                    // System.out.println(playerColor);
-                    // hero.printMap();
-                    // System.out.println(Grid.ANSI_RESET);
-                    try {
-                        // System.out.println("Waiting\n");
-                        wait();
-                    } catch (Exception e) {}
-                    break;
+                switch (command.commandStr) {
+                    case "collect":
+                        System.out.println(playerColor + "Started collect!\n" + Grid.ANSI_RESET);
+                        hero.startCollectingResource(command.resourceType, command.amount, this);
+                        try {
+                            // System.out.println("Waiting\n");
+                            wait();
+                        } catch (Exception e) {
+                        }
+                        break;
 
-                case "sendMercenary":
+                    case "move":
+                        System.out.println(playerColor + "Started move to " + command.x + ", " + command.y + "!\n" + Grid.ANSI_RESET);
+                        hero.moveToDestination(command.x, command.y, this);
+                        // System.out.println(playerColor);
+                        // hero.printMap();
+                        // System.out.println(Grid.ANSI_RESET);
+                        try {
+                            // System.out.println("Waiting\n");
+                            wait();
+                        } catch (Exception e) { }
+                        break;
 
-                    Mercenary merc = trainMercenary();
-                    System.out.println(playerColor + "m" + merc.getNo() + " HP: " + merc.getHealth() + Grid.ANSI_RESET);
-                    if (merc != null)
-                    {
-                        merc.moveToDestination(command.x, command.y, new ITaskFinishedCallback() {
+                    case "sendMercenary":
+
+                        Mercenary merc = trainMercenary();
+                        System.out.println(playerColor + "m" + merc.getNo() + " HP: " + merc.getHealth() + Grid.ANSI_RESET);
+                        if (merc != null) {
+                            merc.moveToDestination(command.x, command.y, new ITaskFinishedCallback() {
+                                @Override
+                                public void onFinish() {
+                                    merc.startAttackingAdjacentEnemy(new ITaskFinishedCallback() {
+                                        @Override
+                                        public void onFinish() {
+
+                                        }
+
+                                        @Override
+                                        public void onFail() {
+
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onFail() {
+                                    // merc died before city was destroyed.
+                                }
+                            });
+                        } else {
+                            System.out.println("No mercenary created");
+                        }
+                        break;
+
+                    case "repairCity":
+                        System.out.println(playerColor + "started repairing his city!" + Grid.ANSI_RESET);
+
+                        city.startRepair(new ITaskFinishedCallback() {
                             @Override
                             public void onFinish() {
-                                merc.startAttackingAdjacentEnemy(new ITaskFinishedCallback() {
-                                    @Override
-                                    public void onFinish() {
-
-                                    }
-
-                                    @Override
-                                    public void onFail() {
-
-                                    }
-                                });
+                                System.out.println("Finished repairing city");
                             }
 
                             @Override
                             public void onFail() {
-                                // merc died before city was destroyed.
+
                             }
                         });
                         break;
-                    }
-                    else
-                    {
-                        System.out.println("No mercenary created");
-                    }
 
-                default:
-                    System.out.println("Unrecognized command will be ignored.");
-                    continue;
+                    default:
+                        System.out.println("Unrecognized command will be ignored.");
+                        continue;
+                }
             }
+
         }
     }
 
@@ -114,6 +142,11 @@ public class Player extends Thread implements ITaskFinishedCallback {
     {
         resources[resourceType.ordinal()] += value;
         // System.out.print(this.getName() + " " + resourceType + " value: " + resources[resourceType.ordinal()] + "\n");
+    }
+
+    public void die() {
+        isAlive = false;
+        players.getAndDecrement();
     }
 
     public Mercenary trainMercenary()
@@ -159,6 +192,10 @@ public class Player extends Thread implements ITaskFinishedCallback {
     }
 
     public void setCity(City city) { this.city = city; }
+
+    public City getCity() {
+        return city;
+    }
 
     public int getResource(Resource.ResourceType resourceType)
     {

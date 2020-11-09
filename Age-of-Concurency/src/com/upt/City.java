@@ -14,6 +14,8 @@ public class City implements  ITileContent, IAttacker
         return currentHealth;
     }
 
+    private boolean destroyed;
+
     private AtomicInteger currentHealth;
     private int maxHealth;
 
@@ -54,8 +56,13 @@ public class City implements  ITileContent, IAttacker
         maxHealth = 1000;
         currentHealth = new AtomicInteger(maxHealth);
         attack = baseAttack;
+        destroyed = false;
 
         Grid.getInstance().tileFromPosition(x, y).setTileContent(this);
+    }
+
+    public boolean isDestroyed() {
+        return destroyed;
     }
 
     // repararea dureaza pana cand orasul e complet reparat sau playerul ramane fara resursele necesare
@@ -70,13 +77,13 @@ public class City implements  ITileContent, IAttacker
                 int wood = player.getResource(Resource.ResourceType.wood);
                 int stone = player.getResource(Resource.ResourceType.stone);
 
-                while (currentHealth.get() < maxHealth && wood >= woodRepairPercentageCost * cityLevel && stone >= stoneRepairPercentageCost * cityLevel)
+                while (currentHealth.get() < maxHealth && wood >= 10 && stone >= 10)
                 {
-                    player.addResource(Resource.ResourceType.wood, -woodRepairPercentageCost * cityLevel);
-                    player.addResource(Resource.ResourceType.stone, -stoneRepairPercentageCost * cityLevel);
+                    player.addResource(Resource.ResourceType.wood, -10);
+                    player.addResource(Resource.ResourceType.stone, -10);
 
                     // probleme de concurenta
-                    currentHealth.getAndAdd(maxHealth / 100);
+                    currentHealth.getAndAdd(10);
 
                     wood = player.getResource(Resource.ResourceType.wood);
                     stone = player.getResource(Resource.ResourceType.stone);
@@ -170,6 +177,7 @@ public class City implements  ITileContent, IAttacker
 
     private void onDeath()
     {
+        player.die();
         Grid.getInstance().tileFromPosition(posX, posY).setTileContent(null);
         Grid.getInstance().displayGrid();
     }

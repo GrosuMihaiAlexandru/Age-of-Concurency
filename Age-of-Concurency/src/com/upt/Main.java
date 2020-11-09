@@ -5,6 +5,12 @@ import java.util.Scanner;
 
 public class Main
 {
+    private static boolean testing;
+
+    static {
+        testing = true;
+    }
+
     public static void main(String args[])
     {
         // String testCase = "SimpleResource";
@@ -27,6 +33,7 @@ public class Main
                 case3();
                 break;
             case "FinalTest":
+                testing = false;
                 case4();
                 break;
             case "Move2":
@@ -34,6 +41,9 @@ public class Main
                 break;
             case "MercenarySpawn":
                 case6();
+                break;
+            case "RepairCity":
+                case7();
                 break;
             default:
                 System.out.println("Unrecognized case. Goodbye!");
@@ -166,7 +176,12 @@ public class Main
         red.start();
         green.start();
 
+
+        green.addCommand(new Command("repairCity", 0, 0));
+        green.addCommand(new Command("move", 4, 4));
+
         startMapPrintingThread();
+
     }
 
     private static void case5() {
@@ -206,14 +221,33 @@ public class Main
         startMapPrintingThread();
     }
 
+    private static void case7() {
+        Grid.setGridPath("scenarios\\pathfindingAvoidance02.txt");
+
+        Player red = new Player(8, 3, Grid.ANSI_RED);
+        red.addResource(Resource.ResourceType.stone, -40);
+        red.addResource(Resource.ResourceType.wood, -40);
+
+        City c = new City(2, 2, red);
+        red.setCity(c);
+        c.takeDamage(600);
+        red.addCommand(new Command("repairCity", 0, 0));
+
+        red.start();
+
+        red.addCommand(new Command("move", 4, 4));
+//        red.addCommand(new Command("move", 5, 5));
+
+        startMapPrintingThread();
+    }
+
     private static void startMapPrintingThread()
     {
         new Thread() {
             public void run() {
                 try {
                     sleep(100);
-                } catch (Exception e) {
-                }
+                } catch (Exception e) { }
 
                 while (true) {
                     System.out.println();
@@ -221,7 +255,17 @@ public class Main
 
                     try {
                         sleep(1000);
-                    } catch (Exception e) {
+                    } catch (Exception e) { }
+
+//                    System.out.println("Players alive:" + Player.getNoPlayers());
+                    if (!testing) {
+                        if (Player.getNoPlayers() < 2) {
+                            System.out.println("GAME OVER");
+                            Player winner = Grid.getInstance().getFirstCityFound().getPlayer();
+                            System.out.println(winner.getPlayerColor() + "H" + Grid.ANSI_RESET + " won");
+                            winner.die();
+                            break;
+                        }
                     }
                 }
             }
